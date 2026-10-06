@@ -5,10 +5,13 @@ Hub-and-spoke Cursor skills for **Android + Kotlin** feature delivery: requireme
 ## Install (personal / team)
 
 ```bash
-# Skills (hub + spokes)
+# Skills land in ~/.cursor/skills/android/ (parent dir must exist)
+mkdir -p ~/.cursor/skills ~/.cursor/rules
+rm -rf ~/.cursor/skills/android
 cp -R skills/android ~/.cursor/skills/
 
-# Optional rules (file globs for Kotlin, UI, tests, manifest)
+# Optional glob rules. Project copy is what Cursor attaches by file glob:
+#   mkdir -p /path/to/app/.cursor/rules && cp rules/*.mdc /path/to/app/.cursor/rules/
 cp rules/*.mdc ~/.cursor/rules/
 ```
 
