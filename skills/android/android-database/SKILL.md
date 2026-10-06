@@ -4,9 +4,6 @@ description: >-
   Room and local persistence as Android data sources. Use for *Dao.kt and
   database module work.
 disable-model-invocation: true
-paths:
-  - "**/*Dao.kt"
-  - "**/database/**/*.kt"
 ---
 
 # Database (Room)
@@ -38,7 +35,8 @@ Local persistence behind repositories.
 
 ## Dependencies
 
-- `android-kotlin`, `android-data`
+- `android-kotlin`
+- `android-data`
 
 ## Validation
 

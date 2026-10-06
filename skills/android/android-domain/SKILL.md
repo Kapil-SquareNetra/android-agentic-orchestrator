@@ -4,8 +4,6 @@ description: >-
   Optional Android domain layer with single-action use cases and no mutable
   state. Use for **/domain/** Kotlin sources.
 disable-model-invocation: true
-paths:
-  - "**/domain/**/*.kt"
 ---
 
 # Domain
@@ -44,7 +42,7 @@ Encapsulate reusable business rules between UI and data.
 
 ## Validation
 
-- `commonTest` or unit tests with fake repositories.
+- JVM unit tests under `src/test` with fake repositories.
 
 ## Anti-patterns
 

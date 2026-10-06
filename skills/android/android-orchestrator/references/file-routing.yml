@@ -1,28 +1,26 @@
-# Baseline file routing. Aliases map to ~/.cursor/skills/android/android-* folders.
-# Hub resolves alias -> folder name via skill_aliases below.
+# Canonical file routing. Aliases map to skills/android/android-* folders.
+# Hub resolves alias -> folder via skill_aliases, unions all matching globs, dedupes skills.
 
 skill_aliases:
   kotlin: android-kotlin
   compose: android-compose
-  ui-architecture: android-compose
-  design-system: android-compose
   accessibility: android-accessibility
   viewmodel: android-viewmodel
-  state-management: android-viewmodel
   domain: android-domain
   data-layer: android-data
-  repository: android-data
-  networking-or-persistence: android-data
   architecture: android-architecture
   networking: android-networking
   database: android-database
   navigation: android-navigation
   testing: android-testing
-  android-testing: android-testing
   maestro: android-maestro
-  ui-automation: android-maestro
   functional-requirements: android-functional-requirements
   detekt: android-detekt
+  security: android-security
+  performance: android-performance
+  code-review: android-code-review
+  requirement-analysis: android-requirement-analysis
+  impact-analysis: android-impact-analysis
 
 routing:
   "**/*.kt":
@@ -31,21 +29,21 @@ routing:
   "**/ui/**/*.kt":
     - kotlin
     - compose
-    - ui-architecture
-    - design-system
 
   "**/*Screen.kt":
     - kotlin
     - compose
-    - ui-architecture
     - accessibility
 
   "**/*ViewModel.kt":
     - kotlin
     - viewmodel
-    - state-management
 
   "**/domain/**/*.kt":
+    - kotlin
+    - domain
+
+  "**/*UseCase.kt":
     - kotlin
     - domain
 
@@ -56,17 +54,43 @@ routing:
   "**/*Repository.kt":
     - kotlin
     - data-layer
-    - repository
-    - networking-or-persistence
     - architecture
 
   "**/*Api.kt":
     - kotlin
     - networking
 
+  "**/network/**/*.kt":
+    - kotlin
+    - networking
+
   "**/*Dao.kt":
     - kotlin
     - database
+
+  "**/database/**/*.kt":
+    - kotlin
+    - database
+
+  "**/*Dto.kt":
+    - kotlin
+    - networking
+
+  "**/*Entity.kt":
+    - kotlin
+    - database
+
+  "**/*Mapper.kt":
+    - kotlin
+    - data-layer
+
+  "**/di/**/*.kt":
+    - kotlin
+    - architecture
+
+  "**/*Module.kt":
+    - kotlin
+    - architecture
 
   "**/navigation/**/*.kt":
     - kotlin
@@ -78,10 +102,57 @@ routing:
 
   "**/androidTest/**/*.kt":
     - kotlin
-    - android-testing
+    - testing
+
+  "**/*.gradle.kts":
+    - kotlin
+    - architecture
+
+  "**/libs.versions.toml":
+    - architecture
+
+  "**/AndroidManifest.xml":
+    - architecture
+    - security
+
+  "**/res/**":
+    - compose
+    - accessibility
+
+  "**/network_security_config.xml":
+    - security
+    - architecture
+
+  "**/proguard-rules.pro":
+    - security
+    - architecture
 
   "**/maestro/**/*.yaml":
     - maestro
-    - ui-automation
+    - testing
+    - functional-requirements
+
+  "**/maestro/**/*.yml":
+    - maestro
+    - testing
+    - functional-requirements
+
+  "**/.maestro/**/*.yaml":
+    - maestro
+    - testing
+    - functional-requirements
+
+  "**/.maestro/**/*.yml":
+    - maestro
+    - testing
+    - functional-requirements
+
+  ".maestro/*.yaml":
+    - maestro
+    - testing
+    - functional-requirements
+
+  ".maestro/*.yml":
+    - maestro
     - testing
     - functional-requirements

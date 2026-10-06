@@ -5,8 +5,6 @@ description: >-
   a technical reason requires another tool. Use in UI automation phase and
   **/maestro/**/*.yaml files.
 disable-model-invocation: true
-paths:
-  - "**/maestro/**/*.yaml"
 ---
 
 # Maestro (UI automation)
@@ -23,16 +21,17 @@ UI automation phase after build/unit/integration. Maestro YAML edits.
 
 - FR user flows and acceptance criteria.
 - App `appId` from manifest.
+- [maestro-runbook.md](../android-orchestrator/references/maestro-runbook.md)
 
 ## Outputs
 
-- Create or update flows; run `maestro test <flow.yaml>`.
+- Create or update flows; run `maestro test <flow.yaml>` or `maestro test <directory>`.
 
 ## Rules
 
 - [Maestro flows](https://docs.maestro.dev/maestro-flows)
 - [Android](https://docs.maestro.dev/get-started/supported-platform/android)
-- [Selectors](https://docs.maestro.dev/maestro-flows/flow-control-and-logic/how-to-use-selectors)
+- [Selectors](https://docs.maestro.dev/reference/selectors/core-selectors.md)
 
 **Preferred** UI automation unless technical reason otherwise.
 
@@ -40,24 +39,32 @@ Journey pattern: Launch → Login (if needed) → Navigate → Act → Verify �
 
 ```yaml
 appId: com.example.app
+env:
+  TEST_USER: ${TEST_USER}  # supply locally; never commit real credentials
 ---
 - launchApp
-- tapOn: "..."
-- assertVisible: "..."
+- runFlow: login.yaml
+- tapOn:
+    id: book_appointment
+- assertVisible: "Confirmed"
 ```
 
-Use semantic matchers; `testTag` / `id:` when text is ambiguous. Framework-agnostic (Compose, Views, etc.).
+Use semantic matchers; `testTag` / `id:` when text is ambiguous.
+
+For Jetpack Compose, `id:` matches `Modifier.testTag` only when the app sets `Modifier.semantics { testTagsAsResourceId = true }` high in the UI tree.
 
 Do not load database/Compose implementation skills while authoring flows — only FR journey context.
 
 ## Dependencies
 
-- `android-testing`, `android-functional-requirements` (journey context)
+- `android-testing`
+- `android-functional-requirements`
 
 ## Validation
 
-- Flow passes locally or blocker documented.
+- Flow passes locally or blocker documented with runbook fallback (Compose UI tests).
 
 ## Anti-patterns
 
 - Maestro loaded during pure repository implementation.
+- Marking UI gate done when no device/emulator was available and no fallback tests ran.

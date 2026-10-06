@@ -1,0 +1,59 @@
+# Repo-relative paths → expected skill folders (file routing only).
+
+cases:
+  - path: feature/ui/HomeContent.kt
+    skills:
+      - android-compose
+      - android-kotlin
+
+  - path: core/data/UserPagingSource.kt
+    skills:
+      - android-data
+      - android-kotlin
+
+  - path: maestro/login.yaml
+    skills:
+      - android-functional-requirements
+      - android-maestro
+      - android-testing
+
+  - path: res/values/strings.xml
+    skills:
+      - android-accessibility
+      - android-compose
+
+  - path: feature/ui/HomeScreen.kt
+    skills:
+      - android-accessibility
+      - android-compose
+      - android-kotlin
+
+  - path: feature/domain/GetUserUseCase.kt
+    skills:
+      - android-domain
+      - android-kotlin
+
+  - path: data/UserRepository.kt
+    skills:
+      - android-architecture
+      - android-data
+      - android-kotlin
+
+  - path: app/src/main/AndroidManifest.xml
+    skills:
+      - android-architecture
+      - android-security
+
+  - path: .maestro/login.yaml
+    skills:
+      - android-functional-requirements
+      - android-maestro
+      - android-testing
+
+task_cases:
+  - path: feature/presentation/BookViewModel.kt
+    tasks: [paging]
+    skills:
+      - android-data
+      - android-kotlin
+      - android-viewmodel

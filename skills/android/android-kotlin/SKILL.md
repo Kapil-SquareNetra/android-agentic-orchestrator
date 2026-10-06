@@ -5,8 +5,6 @@ description: >-
   Detekt-oriented quality habits. Use when editing Kotlin sources, Detekt phase,
   or code review for idiomatic Kotlin.
 disable-model-invocation: true
-paths:
-  - "**/*.kt"
 ---
 
 # Kotlin (Android)

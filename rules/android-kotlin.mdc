@@ -1,9 +1,11 @@
 ---
 description: Kotlin on Android — idiomatic style, coroutines, no business logic in UI.
 alwaysApply: false
+globs:
+  - "**/*.kt"
 ---
 
 # Kotlin
 
-- Prefer `val`, immutability, sealed types, small functions.
-- Avoid `!!`, blocking I/O on main thread, global mutable state.
+- Prefer `suspend` and `Flow` at boundaries; structured concurrency in ViewModels.
+- Keep business rules out of Composables and out of data-source implementations that belong in domain.

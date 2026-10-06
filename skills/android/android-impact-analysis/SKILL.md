@@ -46,7 +46,7 @@ Before sign-off on impact, confirm the FR/plan addresses:
 - Wrong assumptions about API or persistence
 - Impact analysis and regression tests for bug fixes
 
-If `requirement-retrospective.md` exists, extract **generalized** new items into this checklist for future runs. Do not copy FamWise product details. If absent, use this list only.
+If `requirement-retrospective.md` exists, propose **generalized** new checklist items for user approval — do not edit installed skills automatically. Do not copy another product’s details. If absent, use this list only.
 
 ## Dependencies
 

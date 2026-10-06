@@ -8,13 +8,13 @@ Hub-and-spoke Cursor skills for **Android + Kotlin** feature delivery: requireme
 # Skills (hub + spokes)
 cp -R skills/android ~/.cursor/skills/
 
-# Optional lightweight rules (description-only; no file globs)
+# Optional rules (file globs for Kotlin, UI, tests, manifest)
 cp rules/*.mdc ~/.cursor/rules/
 ```
 
 Enable **Sync Skills for Cloud Agents** in Cursor Settings if you use cloud agents.
 
-For a single Android repo, copy `skills/android/android-orchestrator/assets/AGENTS.md` to the project root and optionally `assets/cursor-routing/` → `.cursor/routing/`.
+For a single Android repo, copy `skills/android/android-orchestrator/assets/AGENTS.md` to the project root and optionally `skills/android/android-orchestrator/references/file-routing.yml` and `task-routing.yml` → `.cursor/routing/`.
 
 ## Start a feature
 
@@ -23,7 +23,7 @@ For a single Android repo, copy `skills/android/android-orchestrator/assets/AGEN
 3. In Agent chat, invoke **`android-orchestrator`** (or describe Android feature work so the hub attaches).
 4. Hub runs the lifecycle below; spokes load only for the current **file**, **task**, and **phase**.
 
-FamWise or `requirement-retrospective.md` is a **past-miss lesson catalog** only — not the product spec.
+Optional `requirement-retrospective.md` is a **past-miss lesson catalog** only — not the product spec.
 
 ## End-to-end flow
 
@@ -83,19 +83,23 @@ The hub **reads** spoke `SKILL.md` files when the phase or file requires them. T
 | Phase | Skills |
 |-------|--------|
 | Requirement | `android-requirement-analysis`, `android-functional-requirements`, `android-impact-analysis` |
-| Architecture | `android-architecture`, `android-kotlin`, + affected layer skills |
-| Implementation | Routing from `file-routing.yml` + task extras + `android-architecture` |
+| Architecture | `android-architecture`, `android-kotlin`, plus affected layer skills |
+| Plan | `android-functional-requirements`, `android-architecture` |
+| Implementation | File + task skills from routing + `android-architecture` |
 | Detekt | `android-detekt`, `android-kotlin` |
-| UI automation | `android-maestro`, `android-testing`, FR context |
-| Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; + `android-accessibility` if UI changed |
+| Test | `android-testing` |
+| UI automation | `android-maestro`, `android-testing` |
+| Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility` when UI changed |
+| Acceptance | `android-functional-requirements` |
+| Retrospective | `android-retrospective` |
 
-Canonical routing: `skills/android/android-orchestrator/references/file-routing.yml` and `skill-dependencies.yml`.
+Canonical routing: `skills/android/android-orchestrator/references/file-routing.yml`, `task-routing.yml`, and `skill-dependencies.yml`. Quality commands: `quality-commands.md`. Maestro device fallback: `maestro-runbook.md`. CI runs `python scripts/validate_pack.py` (routing cases in `tests/routing_cases.yml`).
 
 ## Skill catalog
 
 | Folder | Purpose |
 |--------|---------|
-| `android-orchestrator` | Hub, DoD, routing YAML, AGENTS template |
+| `android-orchestrator` | Hub, DoD, routing YAML, quality commands, Maestro runbook, AGENTS template |
 | `android-requirement-analysis` | Understand ask; initial requirement template |
 | `android-functional-requirements` | FR doc + plan/testing/AC templates |
 | `android-impact-analysis` | Impact matrix + past-miss checklist |

@@ -1,10 +1,18 @@
 ---
 description: Android layered architecture — UI, presentation, domain, data, infrastructure; repositories as data entry points.
 alwaysApply: false
+globs:
+  - "**/domain/**/*.kt"
+  - "**/data/**/*.kt"
+  - "**/*Repository.kt"
+  - "**/di/**/*.kt"
+  - "**/*Module.kt"
+  - "**/*.gradle.kts"
+  - "**/AndroidManifest.xml"
 ---
 
-# Android architecture
+# Architecture
 
-- UI does not call data sources directly.
-- ViewModels own screen state; use cases optional for shared business rules.
-- Choose libraries only when the requirement needs them.
+- UI → ViewModel → domain (use cases) → data (repositories) → sources.
+- Repositories are the only entry to remote/local data from domain or presentation.
+- Do not replace an existing project architecture without an integration analysis.

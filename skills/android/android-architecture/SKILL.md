@@ -45,7 +45,7 @@ Multi-module example when justified: `app`, `core/*`, `feature/*` — one respon
 
 ## Dependencies
 
-- `android-kotlin` for language conventions.
+- `android-kotlin`
 
 ## Validation
 

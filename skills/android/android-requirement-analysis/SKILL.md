@@ -32,13 +32,13 @@ Requirement phase only. Hub loads this with `android-functional-requirements` an
 
 - **Plan-driven:** validate against [Android architecture](https://developer.android.com/topic/architecture); list missing FRs; do not rewrite a sufficient plan.
 - **Requirement-driven:** if the user provides only a short ask, offer or apply `initial-requirement-template.md`; once **Required to start** is satisfied, derive FRs, flows, edges, then hand off to impact and architecture.
-- Scan past-miss checklist in `android-impact-analysis` during FR work (FamWise file is reference only).
+- Scan past-miss checklist in `android-impact-analysis` during FR work (`requirement-retrospective.md` is reference only).
 - Scale depth to complexity; simple bugs still need explicit AC.
 
 ## Dependencies
 
-- `android-functional-requirements` for the FR document shape.
-- `android-impact-analysis` for impact and past-miss checklist.
+- `android-functional-requirements`
+- `android-impact-analysis`
 
 ## Validation
 
@@ -48,4 +48,4 @@ Requirement phase only. Hub loads this with `android-functional-requirements` an
 ## Anti-patterns
 
 - Starting Compose or repository code before FR outline exists.
-- Treating FamWise retrospective as product spec.
+- Treating a past-miss retrospective as the product spec.

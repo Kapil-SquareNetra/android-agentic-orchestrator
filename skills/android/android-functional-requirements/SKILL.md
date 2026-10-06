@@ -25,6 +25,9 @@ Requirement phase. Not during Detekt or Maestro-only work.
 ## Outputs
 
 - `docs/functional-requirements.md` from [assets/functional-requirements-template.md](assets/functional-requirements-template.md).
+- `docs/implementation-plan.md` from [assets/implementation-plan-template.md](assets/implementation-plan-template.md) (plan phase).
+- `docs/testing-strategy.md` from [assets/testing-strategy-template.md](assets/testing-strategy-template.md).
+- `docs/acceptance-criteria.md` from [assets/acceptance-criteria-template.md](assets/acceptance-criteria-template.md) when separate from the FR.
 
 ## Rules
 
@@ -38,7 +41,7 @@ Official context: [Guide to app architecture](https://developer.android.com/topi
 
 ## Dependencies
 
-- `android-requirement-analysis` upstream.
+- `android-requirement-analysis`
 
 ## Validation
 
@@ -48,4 +51,4 @@ Official context: [Guide to app architecture](https://developer.android.com/topi
 ## Anti-patterns
 
 - Vague AC (“works well”).
-- Copying another app’s FR verbatim from FamWise.
+- Copying another app’s FR verbatim from a past project without adapting scope.

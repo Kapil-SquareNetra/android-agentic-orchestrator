@@ -9,4 +9,4 @@ This project uses the **Android orchestrator** hub-and-spoke workflow.
 5. On failure: classify, fix the correct layer, re-run the **failed** check, then regression.
 6. Done means the full Definition of Done in the orchestrator skill — not compile-only.
 
-Personal skills live under `~/.cursor/skills/android/`. FamWise or `requirement-retrospective.md` is a **past-miss reference**, not the product spec.
+Personal skills live under `~/.cursor/skills/android/`. Optional `requirement-retrospective.md` is a **past-miss reference**, not the product spec.

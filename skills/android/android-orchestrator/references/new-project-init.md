@@ -12,6 +12,6 @@ Before applying this workflow to a project, inspect:
 
 **Integrate** the universal workflow; **do not blindly replace** working architecture.
 
-Copy optional routing from `assets/cursor-routing/` to the project `.cursor/routing/` if the team wants a visible mirror of hub routing.
+Copy optional routing from `references/file-routing.yml` and `references/task-routing.yml` to the project `.cursor/routing/` if the team wants a visible mirror of hub routing.
 
 Use `assets/AGENTS.md` in the project root when the team wants a simple hub pointer.

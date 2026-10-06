@@ -49,5 +49,5 @@ Docs must reflect actual implementation; no documentation for its own sake.
 
 ## Anti-patterns
 
-- Copying FamWise-specific details into universal skills.
+- Copying one product’s details into universal skills.
 - Skipping retrospective because compile passed.

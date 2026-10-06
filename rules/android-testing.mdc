@@ -1,9 +1,17 @@
 ---
 description: Android testing — fakes over mocks; unit ViewModels and repos; Maestro for critical journeys.
 alwaysApply: false
+globs:
+  - "**/test/**/*.kt"
+  - "**/androidTest/**/*.kt"
+  - "**/maestro/**/*.yaml"
+  - "**/maestro/**/*.yml"
+  - "**/.maestro/**/*.yaml"
+  - "**/.maestro/**/*.yml"
 ---
 
 # Testing
 
-- Map tests to FR IDs from the impact matrix.
-- Add regression tests for significant bug fixes when feasible.
+- Prefer fakes over mocks for repositories and data sources.
+- Unit-test ViewModels with collectors when using `WhileSubscribed` / `stateIn`.
+- Use Maestro for critical user journeys after unit and integration gates pass.

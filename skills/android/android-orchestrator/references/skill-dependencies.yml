@@ -2,22 +2,36 @@
 
 dependencies:
   compose:
-    requires: [kotlin]
+    requires: [kotlin, architecture]
   viewmodel:
     requires: [kotlin, architecture]
-  repository:
-    requires: [kotlin, data-layer]
   data-layer:
-    requires: [kotlin]
+    requires: [kotlin, architecture]
+  networking:
+    requires: [kotlin, data-layer]
+  database:
+    requires: [kotlin, data-layer]
+  navigation:
+    requires: [kotlin, architecture, compose]
   maestro:
     requires: [testing, functional-requirements]
   detekt:
     requires: [kotlin]
   domain:
     requires: [kotlin]
-  navigation:
-    requires: [kotlin, architecture]
-  networking:
-    requires: [kotlin, data-layer]
-  database:
-    requires: [kotlin, data-layer]
+  security:
+    requires: [architecture]
+  accessibility:
+    requires: [compose]
+  performance:
+    requires: [compose]
+  testing:
+    requires: [kotlin]
+  architecture:
+    requires: [kotlin]
+  functional-requirements:
+    requires: [requirement-analysis]
+  requirement-analysis:
+    requires: [functional-requirements, impact-analysis]
+  impact-analysis:
+    requires: [functional-requirements]

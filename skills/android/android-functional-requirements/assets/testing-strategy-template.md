@@ -24,8 +24,11 @@
 
 ## Commands
 
+Use project defaults from the orchestrator [quality-commands.md](../../android-orchestrator/references/quality-commands.md) (Detekt, Lint, assemble, unit, instrumented, Maestro). Record the exact commands run:
+
 ```bash
+# Example — replace module and paths for your project
 ./gradlew detekt
-./gradlew test
-# module-specific:
+./gradlew :app:lintDebug
+./gradlew :app:testDebugUnitTest
 ```

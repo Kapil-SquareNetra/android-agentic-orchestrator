@@ -1,9 +1,14 @@
 ---
 description: Jetpack Compose — stateless UI, hoisted state, explicit loading empty error content.
 alwaysApply: false
+globs:
+  - "**/ui/**/*.kt"
+  - "**/*Screen.kt"
 ---
 
 # Compose
 
 - State down, events up; no ViewModels passed deep into the tree.
-- Reuse design-system components; add testTags for automation when needed.
+- Render loading, empty, error, and content states explicitly.
+- Collect ViewModel state with `collectAsStateWithLifecycle()`.
+- Reuse design-system components; add `testTag` (and `testTagsAsResourceId` at the root when Maestro uses `id:`).

@@ -1,0 +1,51 @@
+# Task signals add skills on top of file routing and the current phase row.
+# Match when the requirement, plan, FR, or user message mentions the signal (case-insensitive).
+
+tasks:
+  auth:
+    skills: [security, networking]
+    trigger: Login, logout, tokens, OAuth, session, credentials, or auth-gated screens.
+
+  credentials:
+    skills: [security]
+    trigger: API keys, secrets, secure storage, Keystore, or sensitive preferences.
+
+  paging:
+    skills: [viewmodel, data-layer]
+    trigger: Paging 3, infinite scroll, or paginated lists.
+
+  deep_links:
+    skills: [navigation, security]
+    trigger: Deep links, app links, intent filters, or verified links.
+
+  offline_sync:
+    skills: [data-layer, database, networking]
+    trigger: Offline mode, sync, cache-first, or conflict resolution.
+
+  background_work:
+    skills: [data-layer, architecture]
+    trigger: WorkManager, foreground service, or scheduled jobs.
+
+  migrations:
+    skills: [database]
+    trigger: Room schema change, migration, or exportSchema.
+
+  sensitive_data:
+    skills: [security]
+    trigger: PII, health, payment, or regulated data handling.
+
+  performance:
+    skills: [performance]
+    trigger: Jank, startup, memory, or explicit performance goals in the FR.
+
+  accessibility:
+    skills: [accessibility]
+    trigger: TalkBack, contrast, touch targets, or a11y AC in the FR.
+
+  hilt:
+    skills: [architecture]
+    trigger: Hilt, Dagger, @Inject, @HiltViewModel, or DI module changes.
+
+  notifications:
+    skills: [architecture, security]
+    trigger: POST_NOTIFICATIONS, notification channels, or FCM push handling.

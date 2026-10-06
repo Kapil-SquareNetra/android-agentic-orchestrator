@@ -34,7 +34,7 @@ Keep UI smooth and avoid main-thread and memory issues.
 
 ## Dependencies
 
-- `android-compose` when UI perf is in scope
+- `android-compose`
 
 ## Validation
 

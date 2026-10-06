@@ -4,9 +4,6 @@ description: >-
   Android data layer and repository patterns as the sole entry to data sources.
   Use for **/data/** and *Repository.kt files.
 disable-model-invocation: true
-paths:
-  - "**/data/**/*.kt"
-  - "**/*Repository.kt"
 ---
 
 # Data layer and repositories
@@ -36,12 +33,14 @@ Data paths and repository files; repository change-impact tasks.
 - Map DTO/entity → domain where shapes differ.
 - UI and ViewModels never depend on data sources directly.
 - Flow for observed data; suspend for one-shot operations.
+- **Paging 3:** `Pager` + `PagingSource` or `RemoteMediator` in repositories; map entities/DTOs to domain before the ViewModel.
+- **WorkManager:** enqueue from repositories or use cases when FR requires durable background sync; keep workers thin and delegate to repositories.
 - After meaningful edits, walk change impact: API, DTO, mapper, domain, repository, use case, ViewModel, UI, pagination, states, nav, persistence, analytics, Maestro, regression.
 
 ## Dependencies
 
-- `android-kotlin`, `android-architecture`
-- `android-networking` / `android-database` when those sources change
+- `android-kotlin`
+- `android-architecture`
 
 ## Validation
 

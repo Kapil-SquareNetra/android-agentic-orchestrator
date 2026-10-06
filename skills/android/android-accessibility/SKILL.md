@@ -4,8 +4,6 @@ description: >-
   Compose accessibility semantics, content descriptions, and TalkBack-friendly
   UI. Use for *Screen.kt baseline and when UI changed in code review.
 disable-model-invocation: true
-paths:
-  - "**/*Screen.kt"
 ---
 
 # Accessibility

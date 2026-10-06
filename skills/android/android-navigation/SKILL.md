@@ -4,8 +4,6 @@ description: >-
   Navigation Compose routes, args, back stack, deep links, and conditional
   navigation. Use for **/navigation/** and navigation change tasks.
 disable-model-invocation: true
-paths:
-  - "**/navigation/**/*.kt"
 ---
 
 # Navigation
@@ -32,14 +30,16 @@ Navigation files; deep-link or auth-gated route tasks.
 - [Navigation Compose](https://developer.android.com/develop/ui/compose/navigation)
 - [Getting started](https://developer.android.com/guide/navigation/navigation-getting-started)
 
-Document: entry points, routes, arguments, back behavior, state restoration, deep links, conditional navigation, auth requirements, failure navigation.
+- When the project uses Navigation 2.8+, prefer type-safe routes: `@Serializable` destinations, `composable<T>()`, and `NavBackStackEntry.toRoute<T>()`.
+- Document: entry points, routes, arguments, back behavior, state restoration, deep links, conditional navigation, auth requirements, failure navigation.
 
 **Validation for nav changes:** navigation tests + affected UI tests + Maestro nav flows (not Maestro alone).
 
 ## Dependencies
 
-- `android-kotlin`, `android-architecture`
-- `android-compose` when nav hosts are in UI package
+- `android-kotlin`
+- `android-architecture`
+- `android-compose`
 
 ## Validation
 

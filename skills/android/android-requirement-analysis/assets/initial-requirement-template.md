@@ -174,7 +174,7 @@ Replace `{…}` placeholders with your content. **Examples** below use a fiction
 
 If you already have `docs/implementation-plan.md`, link it here and mark **Plan-driven**. The hub will validate the plan instead of recreating it.
 
-**Example:** `docs/implementation-plan.md` (FamWise sprint 3 — appointments)
+**Example:** `docs/implementation-plan.md` (sprint 3 — appointments)
 
 - Plan path or link:
 
@@ -186,5 +186,5 @@ When **Required to start** is complete, invoke **android-orchestrator** with thi
 
 1. Expand into `docs/functional-requirements.md`
 2. Produce `docs/requirement-impact.md`
-3. Scan the past-miss checklist (FamWise lessons are reference only)
+3. Scan the past-miss checklist (`requirement-retrospective.md` is reference only)
 4. Continue architecture → plan → implement → quality pipeline

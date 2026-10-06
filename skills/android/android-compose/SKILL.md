@@ -5,9 +5,6 @@ description: >-
   patterns including ui-architecture and design-system concerns. Use for
   **/ui/** and *Screen.kt files.
 disable-model-invocation: true
-paths:
-  - "**/ui/**/*.kt"
-  - "**/*Screen.kt"
 ---
 
 # Compose UI
@@ -34,18 +31,21 @@ File routing for UI paths. Implementation phase for screens.
 - [Compose architecture](https://developer.android.com/develop/ui/compose/architecture)
 - [UI layer](https://developer.android.com/topic/architecture/ui-layer)
 - [Accessibility](https://developer.android.com/develop/ui/compose/accessibility)
+- [Compose / UiAutomator interoperability](https://developer.android.com/develop/ui/compose/testing/interoperability)
 
 - Prefer stateless composables; hoist state to ViewModel.
+- Collect ViewModel state with `collectAsStateWithLifecycle()`.
 - Do not pass ViewModels deep into the tree; use `state` + `onAction`.
 - Handle loading, empty, error, and content explicitly.
 - Reuse design-system components; keep business logic out of Composables.
-- Modifier order: layout, draw, semantics, click.
+- Modifier order is semantic (touch target, clipping, drawing) — reason about each chain; there is no single universal order.
+- For Maestro `id:` selectors on `testTag`, set `Modifier.semantics { testTagsAsResourceId = true }` once high in the hierarchy (Compose 1.2.0+).
 - One composable, one responsibility.
 
 ## Dependencies
 
 - `android-kotlin`
-- `android-architecture` for layer boundaries
+- `android-architecture`
 
 ## Validation
 
@@ -55,3 +55,4 @@ File routing for UI paths. Implementation phase for screens.
 
 - Repository or use case calls inside Composables.
 - Omitting empty/error states for user-visible lists.
+- Expecting Maestro `id:` to match `testTag` without `testTagsAsResourceId`.
