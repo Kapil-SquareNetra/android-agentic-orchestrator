@@ -63,7 +63,7 @@ Understand → FR → impact → (past-miss checklist during FR/impact) → arch
 | Detekt | `android-detekt`, `android-kotlin` (quality section) |
 | Test | `android-testing`, testing strategy from FR assets; commands in [quality-commands.md](references/quality-commands.md) |
 | UI automation | `android-maestro`, `android-testing`, FR context |
-| Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility` when UI changed |
+| Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility`, `android-material`, and `android-material-components` when UI changed |
 | Acceptance | `android-functional-requirements` (AC template), FR and test evidence |
 | Retrospective | `android-retrospective` |
 

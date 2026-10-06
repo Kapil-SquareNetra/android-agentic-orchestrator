@@ -42,6 +42,10 @@ tasks:
     skills: [accessibility]
     trigger: TalkBack, contrast, touch targets, or a11y AC in the FR.
 
+  material:
+    skills: [material, material-components]
+    trigger: Material Design, Material 3, MaterialTheme, color scheme, typography, shape, or choosing a Material component.
+
   hilt:
     skills: [architecture]
     trigger: Hilt, Dagger, @Inject, @HiltViewModel, or DI module changes.

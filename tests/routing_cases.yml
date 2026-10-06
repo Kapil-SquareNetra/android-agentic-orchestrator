@@ -5,6 +5,8 @@ cases:
     skills:
       - android-compose
       - android-kotlin
+      - android-material
+      - android-material-components
 
   - path: core/data/UserPagingSource.kt
     skills:
@@ -27,6 +29,8 @@ cases:
       - android-accessibility
       - android-compose
       - android-kotlin
+      - android-material
+      - android-material-components
 
   - path: feature/domain/GetUserUseCase.kt
     skills:
@@ -56,4 +60,12 @@ task_cases:
     skills:
       - android-data
       - android-kotlin
+      - android-viewmodel
+
+  - path: feature/presentation/BookViewModel.kt
+    tasks: [material]
+    skills:
+      - android-kotlin
+      - android-material
+      - android-material-components
       - android-viewmodel

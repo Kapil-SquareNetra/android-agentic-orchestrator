@@ -92,7 +92,7 @@ The hub **reads** spoke `SKILL.md` files when the phase or file requires them. T
 | Detekt | `android-detekt`, `android-kotlin` |
 | Test | `android-testing` |
 | UI automation | `android-maestro`, `android-testing` |
-| Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility` when UI changed |
+| Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility`, `android-material`, and `android-material-components` when UI changed |
 | Acceptance | `android-functional-requirements` |
 | Retrospective | `android-retrospective` |
 
@@ -109,6 +109,8 @@ Canonical routing: `skills/android/android-orchestrator/references/file-routing.
 | `android-architecture` | Layers, modules, stack choices |
 | `android-kotlin` | Kotlin + Detekt quality habits |
 | `android-compose` | UI, design system, screen patterns |
+| `android-material` | Material 3 theme roles, color, type, shape, layout |
+| `android-material-components` | Purpose-to-component choice for Compose Material 3 |
 | `android-viewmodel` | StateFlow, events, screen VM |
 | `android-domain` | Use cases |
 | `android-data` | Repositories |

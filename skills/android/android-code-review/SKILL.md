@@ -15,7 +15,7 @@ Gate completion before acceptance criteria sign-off.
 
 ## When to load
 
-Code-review phase with `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing` (all mandatory in this phase). Add `android-accessibility` when UI changed.
+Code-review phase with `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing` (all mandatory in this phase). Add `android-accessibility`, `android-material`, and `android-material-components` when UI changed.
 
 ## Inputs
 

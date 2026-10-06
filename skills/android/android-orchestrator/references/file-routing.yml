@@ -4,6 +4,8 @@
 skill_aliases:
   kotlin: android-kotlin
   compose: android-compose
+  material: android-material
+  material-components: android-material-components
   accessibility: android-accessibility
   viewmodel: android-viewmodel
   domain: android-domain
@@ -29,11 +31,15 @@ routing:
   "**/ui/**/*.kt":
     - kotlin
     - compose
+    - material
+    - material-components
 
   "**/*Screen.kt":
     - kotlin
     - compose
     - accessibility
+    - material
+    - material-components
 
   "**/*ViewModel.kt":
     - kotlin

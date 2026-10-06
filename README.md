@@ -118,7 +118,7 @@ skills/android/              Hub + spoke trees (SKILL.md, assets/, references/)
 rules/                       Glob-scoped Cursor rules (optional)
 ```
 
-Spoke folders cover requirements, architecture, Kotlin, Compose, ViewModel, domain, data, networking, database, navigation, testing, Maestro, Detekt, security, performance, accessibility, code review, and retrospective. The catalog with one-line purposes is in [INDEX.md](INDEX.md).
+Spoke folders cover requirements, architecture, Kotlin, Compose, Material guidelines, Material component choice, ViewModel, domain, data, networking, database, navigation, testing, Maestro, Detekt, security, performance, accessibility, code review, and retrospective. The catalog with one-line purposes is in [INDEX.md](INDEX.md).
 
 ## License
 

@@ -23,6 +23,10 @@ dependencies:
     requires: [architecture]
   accessibility:
     requires: [compose]
+  material:
+    requires: [compose]
+  material-components:
+    requires: [compose, material]
   performance:
     requires: [compose]
   testing:
