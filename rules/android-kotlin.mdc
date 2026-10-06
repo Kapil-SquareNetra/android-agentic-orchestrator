@@ -1,0 +1,9 @@
+---
+description: Kotlin on Android — idiomatic style, coroutines, no business logic in UI.
+alwaysApply: false
+---
+
+# Kotlin
+
+- Prefer `val`, immutability, sealed types, small functions.
+- Avoid `!!`, blocking I/O on main thread, global mutable state.

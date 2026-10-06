@@ -1,0 +1,40 @@
+# Copy to project .cursor/routing/ if desired. Canonical copy:
+# ~/.cursor/skills/android/android-orchestrator/references/file-routing.yml
+
+skill_aliases:
+  kotlin: android-kotlin
+  compose: android-compose
+  ui-architecture: android-compose
+  design-system: android-compose
+  accessibility: android-accessibility
+  viewmodel: android-viewmodel
+  state-management: android-viewmodel
+  domain: android-domain
+  data-layer: android-data
+  repository: android-data
+  networking-or-persistence: android-data
+  architecture: android-architecture
+  networking: android-networking
+  database: android-database
+  navigation: android-navigation
+  testing: android-testing
+  android-testing: android-testing
+  maestro: android-maestro
+  ui-automation: android-maestro
+  functional-requirements: android-functional-requirements
+  detekt: android-detekt
+
+routing:
+  "**/*.kt": [kotlin]
+  "**/ui/**/*.kt": [kotlin, compose, ui-architecture, design-system]
+  "**/*Screen.kt": [kotlin, compose, ui-architecture, accessibility]
+  "**/*ViewModel.kt": [kotlin, viewmodel, state-management]
+  "**/domain/**/*.kt": [kotlin, domain]
+  "**/data/**/*.kt": [kotlin, data-layer]
+  "**/*Repository.kt": [kotlin, data-layer, repository, networking-or-persistence, architecture]
+  "**/*Api.kt": [kotlin, networking]
+  "**/*Dao.kt": [kotlin, database]
+  "**/navigation/**/*.kt": [kotlin, navigation]
+  "**/test/**/*.kt": [kotlin, testing]
+  "**/androidTest/**/*.kt": [kotlin, android-testing]
+  "**/maestro/**/*.yaml": [maestro, ui-automation, testing, functional-requirements]

@@ -1,0 +1,10 @@
+---
+description: Android layered architecture — UI, presentation, domain, data, infrastructure; repositories as data entry points.
+alwaysApply: false
+---
+
+# Android architecture
+
+- UI does not call data sources directly.
+- ViewModels own screen state; use cases optional for shared business rules.
+- Choose libraries only when the requirement needs them.

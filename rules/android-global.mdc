@@ -1,0 +1,10 @@
+---
+description: Android agentic workflow — use android-orchestrator hub for feature delivery; requirement or plan in, full quality pipeline out.
+alwaysApply: false
+---
+
+# Android global
+
+- Android + Kotlin only unless the user explicitly requests KMM/KMP.
+- Start from `android-orchestrator`; load spokes only for the current file, task, and phase.
+- FamWise or `requirement-retrospective.md` is a past-miss reference, not the product spec.

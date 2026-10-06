@@ -1,0 +1,9 @@
+---
+description: Jetpack Compose — stateless UI, hoisted state, explicit loading empty error content.
+alwaysApply: false
+---
+
+# Compose
+
+- State down, events up; no ViewModels passed deep into the tree.
+- Reuse design-system components; add testTags for automation when needed.

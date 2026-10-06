@@ -1,0 +1,9 @@
+---
+description: Android testing — fakes over mocks; unit ViewModels and repos; Maestro for critical journeys.
+alwaysApply: false
+---
+
+# Testing
+
+- Map tests to FR IDs from the impact matrix.
+- Add regression tests for significant bug fixes when feasible.

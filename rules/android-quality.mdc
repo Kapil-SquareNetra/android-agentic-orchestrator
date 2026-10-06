@@ -1,0 +1,9 @@
+---
+description: Android quality gate — Detekt before declaring done; fix or justify suppressions.
+alwaysApply: false
+---
+
+# Quality
+
+- Run `./gradlew detekt` as part of the pipeline.
+- Re-run the failed check after fixes; escalate after three identical failures with no new evidence.

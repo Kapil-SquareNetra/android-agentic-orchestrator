@@ -1,0 +1,9 @@
+---
+description: Android security — no secrets in source or logs; secure storage for credentials.
+alwaysApply: false
+---
+
+# Security
+
+- Validate inputs; request minimum permissions.
+- Review auth and sensitive data paths in the code-review phase.

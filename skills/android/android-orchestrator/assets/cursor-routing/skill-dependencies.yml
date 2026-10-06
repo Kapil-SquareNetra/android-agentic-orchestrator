@@ -1,0 +1,24 @@
+# Copy to project .cursor/routing/ if desired. Canonical copy:
+# ~/.cursor/skills/android/android-orchestrator/references/skill-dependencies.yml
+
+dependencies:
+  compose:
+    requires: [kotlin]
+  viewmodel:
+    requires: [kotlin, architecture]
+  repository:
+    requires: [kotlin, data-layer]
+  data-layer:
+    requires: [kotlin]
+  maestro:
+    requires: [testing, functional-requirements]
+  detekt:
+    requires: [kotlin]
+  domain:
+    requires: [kotlin]
+  navigation:
+    requires: [kotlin, architecture]
+  networking:
+    requires: [kotlin, data-layer]
+  database:
+    requires: [kotlin, data-layer]
