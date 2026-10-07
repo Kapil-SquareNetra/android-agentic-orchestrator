@@ -39,7 +39,8 @@ File routing for UI paths. Implementation phase for screens.
 - Handle loading, empty, error, and content explicitly.
 - Reuse design-system components; keep business logic out of Composables.
 - Modifier order is semantic (touch target, clipping, drawing) — reason about each chain; there is no single universal order.
-- For Maestro `id:` selectors on `testTag`, set `Modifier.semantics { testTagsAsResourceId = true }` once high in the hierarchy (Compose 1.2.0+).
+- For Maestro `id:` selectors on `testTag`, set `Modifier.semantics { testTagsAsResourceId = true }` once high in the hierarchy (Compose 1.2.0+). Repeat on **dialog / picker** content when those nodes are outside the root semantics owner.
+- Expose a `testTag` on the control that opens system or M3 dialogs (date picker, etc.), not only on the displayed value field.
 - One composable, one responsibility.
 
 ## Dependencies

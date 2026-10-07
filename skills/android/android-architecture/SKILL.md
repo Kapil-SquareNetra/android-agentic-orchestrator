@@ -51,6 +51,14 @@ Multi-module example when justified: `app`, `core/*`, `feature/*` — one respon
 
 - Repositories are the data-layer entry; UI does not call data sources directly.
 - ViewModels at screen level; no business logic in Composables.
+- `docs/functional-requirements.md` and `docs/architecture.md` stay aligned after UX or stack changes (e.g. design system swap, settings hub split).
+
+### Settings and theme (recurring pattern)
+
+- **Settings hub:** one ViewModel for hub state (toggles + summary subtitles); **detail screens** each with their own ViewModel and use cases.
+- **App theme:** optional `ThemeViewModel` at the root observing prefs; settings hub writes via use cases — avoid reading DataStore inside Composables.
+- **Navigation:** shared one-shot handling (snackbar, open URL, post-clear navigation) in a small route wrapper; feature subgraph in `NavGraphBuilder` extensions.
+- **Use cases in constructor:** inject as `private val` when methods on the ViewModel call them after `init`.
 
 ## Anti-patterns
 

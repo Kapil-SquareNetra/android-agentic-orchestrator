@@ -51,7 +51,17 @@ env:
 
 Use semantic matchers; `testTag` / `id:` when text is ambiguous.
 
-For Jetpack Compose, `id:` matches `Modifier.testTag` only when the app sets `Modifier.semantics { testTagsAsResourceId = true }` high in the UI tree.
+For Jetpack Compose, `id:` matches `Modifier.testTag` only when the app sets `Modifier.semantics { testTagsAsResourceId = true }` high in the UI tree. **Dialogs and date pickers** often render outside the root — apply the same semantics on dialog content, or fall back to stable visible text (e.g. Material **“OK”** on `DatePickerDialog`).
+
+### UI-change gate
+
+After any user-facing UI change, re-run at least one **smoke** flow before marking the task done (with Gradle unit tests). Typical sequence: install debug APK → `adb shell pm clear <appId>` when the flow assumes empty/first-run state → `maestro test <flow>`.
+
+### Compose flow tips
+
+- Prefer a dedicated `testTag` on the control that opens a picker (e.g. `open_date_picker`), not the read-only field text.
+- Empty-list smoke fails if prior runs left data — always clear app data or use a dedicated test account flow.
+- When using Maestro MCP, pass an **absolute path** to the flows directory if the tool resolves relative paths from the wrong cwd. Tag filters (`include_tags`) only work when flows declare matching tags.
 
 Do not load database/Compose implementation skills while authoring flows — only FR journey context.
 

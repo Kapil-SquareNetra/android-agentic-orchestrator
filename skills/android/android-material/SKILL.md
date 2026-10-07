@@ -35,6 +35,9 @@ Official sources: [Material Design 3](https://m3.material.io/), [Develop](https:
 - Keep an existing project theme. Extend its scheme, type, and shape scale. Do not replace a working theme with stock defaults.
 - Color roles: `primary` for prominent actions and active state, `secondary` for less prominent controls, `tertiary` for contrast accents. Pair each container with its on-color (`onPrimary` on `primary`, `onPrimaryContainer` on `primaryContainer`, same for surface and other roles).
 - Support light and dark with `isSystemInDarkTheme()`. On API 31+, dynamic color (`dynamicLightColorScheme` / `dynamicDarkColorScheme`) may follow the wallpaper; always fall back to the app’s static schemes.
+- **User-controlled theme:** when Settings offers dark mode, persist the choice (e.g. DataStore) and pass `darkTheme` into the root `MaterialTheme` from Activity/`ThemeViewModel`; use dynamic color only when the user is not forcing light/dark.
+- **Dates:** use Material 3 `DatePicker` / `DatePickerDialog` for calendar dates — not separate month/day/year text fields.
+- **Settings (M3):** use `Scaffold` + `LazyColumn` of `ListItem`s; keep instant toggles (e.g. dark mode) on the hub with `Switch` in `trailingContent`; navigate to a detail screen for multi-step or destructive actions (API key tutorial, clear data with confirm).
 - Type scale roles are display, headline, title, body, and label (large, medium, small). Set `fontFamily` on each `TextStyle` you customize. M3 `Typography` has no single default font parameter.
 - Shape scale: extra small through extra large via `MaterialTheme.shapes`. Use it for component corners.
 - Elevation is mostly tonal (surface tone), with shadow as a secondary cue. Prefer `tonalElevation` on `Surface`.

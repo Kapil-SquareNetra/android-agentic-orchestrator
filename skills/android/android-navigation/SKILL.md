@@ -35,6 +35,14 @@ Navigation files; deep-link or auth-gated route tasks.
 
 **Validation for nav changes:** navigation tests + affected UI tests + Maestro nav flows (not Maestro alone).
 
+When the `NavHost` grows large, split by feature:
+
+```kotlin
+fun NavGraphBuilder.settingsGraph(navController: NavHostController, ...) { ... }
+```
+
+Keep route constants in one `Routes` object; hub screen receives a single `*Actions` type instead of many lambdas.
+
 ## Dependencies
 
 - `android-kotlin`

@@ -4,7 +4,7 @@ A feature is **not** complete merely because it compiles.
 
 Complete when **all** apply (with evidence: commands, test output, or review notes):
 
-- Functional requirements are satisfied
+- Functional requirements are satisfied and **approved** by the user (not draft-only)
 - Impact analysis is completed (or lane-appropriate skip documented)
 - Architecture is appropriate for the change
 - Kotlin standards are followed

@@ -49,6 +49,8 @@ Use the project wrapper when it delegates to the same Material component. Do not
 | Existing large-window apps still on drawers | `ModalNavigationDrawer` or `PermanentNavigationDrawer` until the app adopts an expanded rail |
 | In-screen sections, not app destinations | `TabRow` / `PrimaryTabRow` |
 | Continuous index of text or images | `ListItem` in a lazy list |
+| Settings hub: navigate to a screen | `ListItem` + chevron, `clickable`; subtitle = current value |
+| Settings hub: boolean pref (e.g. dark mode) | `ListItem` + `Switch` in `trailingContent` — no extra screen |
 | One subject with its own content and actions | `Card` |
 | Urgent prompt, alert, or confirmation that blocks the flow | `AlertDialog` / `BasicAlertDialog` |
 | Extra or secondary content anchored to the bottom; user can dismiss it | `ModalBottomSheet` on compact and medium widths. Standard sheet only when primary content stays usable |

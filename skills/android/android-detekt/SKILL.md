@@ -42,6 +42,16 @@ Checks include: complexity, smells, naming, style, bugs, long methods, large cla
 
 On failure: load the **file** spoke for the violating path, fix, re-run detekt.
 
+### Common Compose / navigation fixes (prefer refactor over suppress)
+
+| Rule | Typical fix |
+|------|-------------|
+| `LongParameterList` on a `@Composable` | Bundle navigation callbacks in a small `data class` (e.g. `*Actions`, `*Callbacks`) |
+| `LongMethod` on `NavHost` / graph builder | Extract `NavGraphBuilder.featureGraph(...)` per area (settings, auth, etc.) |
+| `LongParameterList` on dialogs / pickers | Group related lambdas in a config/actions type |
+
+Use `@OptIn(ExperimentalComposeUiApi::class)` only where required (e.g. `testTagsAsResourceId`).
+
 ## Dependencies
 
 - `android-kotlin`

@@ -39,6 +39,13 @@ Also document where relevant: user actions, inputs, outputs, validation, success
 
 Official context: [Guide to app architecture](https://developer.android.com/topic/architecture) for layer vocabulary.
 
+### Approval and traceability
+
+1. Mark `docs/functional-requirements.md` **DRAFT** until the user explicitly approves (e.g. “approve FR”).
+2. **Stop implementation** after publishing or updating the FR until approval — plan-only or chat requests do not replace sign-off.
+3. When the user changes scope mid-project (plan edits, new settings UX, design system), update the FR **before** coding and show a short **delta** (new/changed FR IDs).
+4. Sync `docs/initial-requirement.md`, `docs/requirement-impact.md`, and `docs/acceptance-criteria.md` when FR IDs or behavior change.
+
 ## Dependencies
 
 - `android-requirement-analysis`
