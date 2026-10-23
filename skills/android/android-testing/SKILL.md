@@ -18,6 +18,7 @@ Testing phase, code-review phase (mandatory), test file routing.
 
 ## Inputs
 
+- `docs/test-cases.md` (positive, negative, and edge cases tied to FR IDs)
 - `docs/testing-strategy.md`
 - Impact matrix test column.
 
@@ -47,7 +48,7 @@ Prefer **fakes** over mocks. Targeted runs by change type; full DoD before featu
 
 ## Validation
 
-- Named tests map to FR IDs where possible.
+- Named tests map to FR IDs and, where a row exists, to TC IDs in `docs/test-cases.md`.
 
 ## Anti-patterns
 

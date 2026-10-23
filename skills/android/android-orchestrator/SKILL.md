@@ -120,7 +120,7 @@ The **hub session** coordinates; it does not implement entire feature lanes alon
 
 - **Delegate** implementation, exploration, and focused debugging via **Task subagents** (`explore`, `generalPurpose`, `ci-investigator` as appropriate). Pass FR IDs, paths, and acceptance commands in the task prompt.
 - Hub merges results, runs quality gates (Detekt, build, unit, **Maestro smoke after UI changes**), and reports done/blocked with evidence.
-- **FR approval:** after drafting `docs/functional-requirements.md`, present a summary to the user and wait for explicit approval before the implement phase (`android-functional-requirements`).
+- **FR approval:** after drafting `docs/functional-requirements.md` and `docs/test-cases.md` (positive, negative, and edge cases per FR), present a summary to the user and wait for explicit approval before the implement phase (`android-functional-requirements`).
 
 Project repos may add `.cursor/rules/` for local gates (e.g. Maestro-on-UI-change, orchestrator-hub); hub must honor those.
 

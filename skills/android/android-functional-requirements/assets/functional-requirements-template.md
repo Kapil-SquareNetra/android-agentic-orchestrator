@@ -36,3 +36,7 @@
 ## Open questions
 
 -
+
+## Test cases
+
+Positive, negative, and edge cases for these IDs are in `docs/test-cases.md`, drafted with this document.

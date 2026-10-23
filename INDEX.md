@@ -6,9 +6,10 @@ Hub-and-spoke Cursor skills for **Android + Kotlin** feature delivery: requireme
 
 ```bash
 # Skills land in ~/.cursor/skills/android/ (parent dir must exist)
-mkdir -p ~/.cursor/skills ~/.cursor/rules
+mkdir -p ~/.cursor/skills ~/.cursor/rules ~/.cursor/commands
 rm -rf ~/.cursor/skills/android
 cp -R skills/android ~/.cursor/skills/
+cp commands/*.md ~/.cursor/commands/
 
 # Optional glob rules. Project copy is what Cursor attaches by file glob:
 #   mkdir -p /path/to/app/.cursor/rules && cp rules/*.mdc /path/to/app/.cursor/rules/
@@ -21,7 +22,7 @@ For a single Android repo, copy `skills/android/android-orchestrator/assets/AGEN
 
 ## Start a feature
 
-1. Copy `skills/android/android-requirement-analysis/assets/initial-requirement-template.md` to `docs/initial-requirement.md` (or paste sections in chat).
+1. Run `/android-requirement` and copy the prompt, or copy `skills/android/android-requirement-analysis/assets/initial-requirement-template.md` to `docs/initial-requirement.md`.
 2. Fill **Required to start**: summary, goal, actor, happy path, When/Then AC, in/out of scope.
 3. In Agent chat, invoke **`android-orchestrator`** (or describe Android feature work so the hub attaches).
 4. Hub runs the lifecycle below; spokes load only for the current **file**, **task**, and **phase**.
@@ -38,6 +39,7 @@ Understand input (requirement-driven vs plan-driven)
         │
         ▼
 Functional requirements  →  docs/functional-requirements.md
+                         →  docs/test-cases.md (positive, negative, edge)
         │
         ▼
 Impact analysis          →  docs/requirement-impact.md
@@ -125,6 +127,14 @@ Canonical routing: `skills/android/android-orchestrator/references/file-routing.
 | `android-accessibility` | A11y on screens |
 | `android-code-review` | Pre-merge checklist |
 | `android-retrospective` | Post-delivery lessons |
+
+## Commands
+
+Slash commands live in `commands/` and install to `~/.cursor/commands/` (not under the skills tree).
+
+| File | Invoke | Purpose |
+|------|--------|---------|
+| `android-requirement.md` | `/android-requirement` | Copyable initial-requirement prompt |
 
 ## Definition of done
 

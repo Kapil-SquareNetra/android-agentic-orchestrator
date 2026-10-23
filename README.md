@@ -15,6 +15,7 @@ The hub asks before destructive actions: `git push`, signing or keystore edits, 
 | `android-orchestrator` | Hub. Auto-invokes from its description. Owns the lifecycle, definition of done, and routing. |
 | Other `android-*` skills | Spokes. `disable-model-invocation: true`. The hub reads them when the phase or file needs them. |
 | `rules/*.mdc` | Seven optional glob rules: Kotlin, Compose, architecture, tests, security, the quality gate, and a global rule that points Kotlin and `docs/` work at the hub. |
+| `commands/*.md` | Slash commands installed to `~/.cursor/commands/`. `/android-requirement` prints the copyable initial-requirement prompt. |
 | `scripts/validate_pack.py` | Checks routing aliases, spoke frontmatter, INDEX/hub phase parity, markdown links, and golden routing cases. |
 
 Delivery lanes scale the lifecycle:
@@ -25,7 +26,7 @@ Delivery lanes scale the lifecycle:
 | **Bugfix** | Short impact, implement, gates for touched layers, review | A new FR when existing acceptance criteria still cover the bug |
 | **Refactor** | Architecture check, implement, regression tests, review | A new product FR |
 
-The hub writes phase artifacts into the app repo under `docs/`: functional requirements, impact, implementation plan, testing strategy, acceptance criteria, and retrospective. Final status is **done**, **blocked**, or **next**, each with the commands or test evidence that support it. Compile success alone is not done. See [definition of done](skills/android/android-orchestrator/references/definition-of-done.md).
+The hub writes phase artifacts into the app repo under `docs/`: functional requirements, test cases (positive, negative, and edge, one list per FR), impact, implementation plan, testing strategy, acceptance criteria, and retrospective. Final status is **done**, **blocked**, or **next**, each with the commands or test evidence that support it. Compile success alone is not done. See [definition of done](skills/android/android-orchestrator/references/definition-of-done.md).
 
 Gradle defaults assume a single `:app` module. Override module names, variants, and commands in the project `AGENTS.md`. See [quality-commands.md](skills/android/android-orchestrator/references/quality-commands.md).
 
@@ -36,10 +37,11 @@ Copy skills into `~/.cursor/skills/android/` (the destination directory must alr
 ```bash
 git clone https://github.com/Kapil-SquareNetra/android-agentic-orchestrator.git
 cd android-agentic-orchestrator
-mkdir -p ~/.cursor/skills ~/.cursor/rules
+mkdir -p ~/.cursor/skills ~/.cursor/rules ~/.cursor/commands
 rm -rf ~/.cursor/skills/android
 cp -R skills/android ~/.cursor/skills/
 cp rules/*.mdc ~/.cursor/rules/
+cp commands/*.md ~/.cursor/commands/
 ```
 
 Restart Cursor or open a new Agent chat so the copied skills are picked up. If you use cloud agents, enable **Sync Skills for Cloud Agents** in Cursor Settings.
@@ -71,7 +73,7 @@ Read [new-project-init.md](skills/android/android-orchestrator/references/new-pr
 
 ## Start a feature
 
-1. Copy [initial-requirement-template.md](skills/android/android-requirement-analysis/assets/initial-requirement-template.md) to `docs/initial-requirement.md`, or paste the same sections in chat.
+1. In Agent chat, run `/android-requirement` and copy the prompt it prints, or copy [initial-requirement-template.md](skills/android/android-requirement-analysis/assets/initial-requirement-template.md) to `docs/initial-requirement.md`.
 2. Fill **Required to start**: summary, goal, actor, happy path, When/Then acceptance criteria, and in/out of scope.
 3. In Agent chat, invoke **`android-orchestrator`** (or describe Android feature work so the hub attaches).
 4. If you already have `docs/implementation-plan.md`, say so. The hub validates that plan and fills gaps. It does not rewrite a plan that is already sufficient.
@@ -115,6 +117,7 @@ scripts/                     validate_pack.py, routing_resolve.py
 tests/routing_cases.yml      File and task routing golden paths
 examples/                    Smoke checklist for dogfooding
 skills/android/              Hub + spoke trees (SKILL.md, assets/, references/)
+commands/                    Slash commands copied to ~/.cursor/commands/
 rules/                       Glob-scoped Cursor rules (optional)
 ```
 
