@@ -20,6 +20,8 @@ Enable **Sync Skills for Cloud Agents** in Cursor Settings if you use cloud agen
 
 For a single Android repo, copy `skills/android/android-orchestrator/assets/AGENTS.md` to the project root and optionally `skills/android/android-orchestrator/references/file-routing.yml` and `task-routing.yml` → `.cursor/routing/`.
 
+**Existing repo with `AGENTS.md` or rules:** do not blind-copy — run **`/android-adopt-pack`** in the app workspace (see README § Existing Android repo).
+
 ## Start a feature
 
 1. Run `/android-requirement` and copy the prompt, or copy `skills/android/android-requirement-analysis/assets/initial-requirement-template.md` to `docs/initial-requirement.md`.
@@ -137,6 +139,7 @@ Slash commands live in `commands/` and install to `~/.cursor/commands/` (not und
 | File | Invoke | Purpose |
 |------|--------|---------|
 | `android-requirement.md` | `/android-requirement` | Copyable initial-requirement prompt |
+| `android-adopt-pack.md` | `/android-adopt-pack` | Merge pack into existing app (no blind overwrite) |
 
 ## Definition of done
 

@@ -6,6 +6,35 @@ It is for **Kotlin Android** apps. Kotlin Multiplatform stays on separate `kmm-*
 
 The detailed catalog is in [INDEX.md](INDEX.md). Version history is in [CHANGELOG.md](CHANGELOG.md).
 
+## Existing Android repo — read this first
+
+**This pack does not auto-merge with your project.** If you already have `AGENTS.md`, `.cursor/rules/`, or team conventions, **do not** blindly copy files from this repo on top of them. The install commands below that say `cp … AGENTS.md` **will overwrite** your file if you run them as-is.
+
+### What to do instead
+
+1. **Install skills only (safe, no app-repo changes)** — copy `skills/android/` and `commands/` to `~/.cursor/` (see [Install](#install)). Your app repo stays unchanged; the orchestrator still works from Agent chat.
+2. **Open your Android app in Cursor** and run **`/android-adopt-pack`** (or copy the short prompt below). The agent compares this pack with **your** repo and proposes **additions only**.
+3. **Review the diff** before you commit. Keep your module names, Gradle commands, CI notes, and custom rules. Add orchestrator lifecycle, `docs/` templates, and optional gates where they help.
+4. **Start feature work** with `/android-requirement` or `docs/initial-requirement.md` — you do not need to replace your architecture.
+
+Inspection checklist: [new-project-init.md](skills/android/android-orchestrator/references/new-project-init.md).
+
+### Short prompt (copy into Agent)
+
+Workspace = your Android app. Install skills to `~/.cursor/` first. `@`-mention a local clone of this repo if the pack is not on disk.
+
+```text
+Adopt android-agentic-orchestrator into THIS repo. Do not overwrite AGENTS.md or .cursor/rules blindly. Compare my project with the pack (~/.cursor/skills/android/ or my orchestrator clone). Merge AGENTS.md and rules: keep my modules, Gradle/CI commands, and team rules; add orchestrator lifecycle, docs/ workflow, and optional gates only. Output gap table, merged AGENTS.md draft, rules plan, do-not-copy list, and a one-PR checklist. Plan only—no feature work until I approve applying edits.
+```
+
+**Full checklist prompt:** run **`/android-adopt-pack`** in Agent (same as the block the command prints; install `commands/` to `~/.cursor/commands/`).
+
+| If you… | Then… |
+|---------|--------|
+| **New app / empty Cursor setup** | You may copy the pack `AGENTS.md` and `rules/*.mdc` into the project (see Install). |
+| **Existing app with rules or AGENTS.md** | **`/android-adopt-pack`** or the short prompt above; **merge**, do not replace. |
+| **Skills only, zero project file changes** | Install to `~/.cursor/skills/android/` only — enough to run the orchestrator in chat. |
+
 ## Use it
 
 ```mermaid
@@ -166,12 +195,13 @@ cp commands/*.md ~/.cursor/commands/
 
 Open a new Agent chat so Cursor picks up the copy. After you pull updates, run the copy again. Cursor does not watch this git repo.
 
-For one Android app, also copy the project pointer. This overwrites an existing `AGENTS.md`.
+For one Android app, optional project files (see **[Existing Android repo — read this first](#existing-android-repo--read-this-first)** before overwriting anything):
 
 ```bash
+# Greenfield or after you merged with Agent — NOT a blind overwrite if AGENTS.md already exists
 mkdir -p /path/to/android-app/.cursor/rules
-cp rules/*.mdc /path/to/android-app/.cursor/rules/
-cp skills/android/android-orchestrator/assets/AGENTS.md /path/to/android-app/AGENTS.md
+cp rules/*.mdc /path/to/android-app/.cursor/rules/    # adds pack rules; does not remove yours if names differ
+cp skills/android/android-orchestrator/assets/AGENTS.md /path/to/android-app/AGENTS.md   # OVERWRITES AGENTS.md
 ```
 
 Optional: copy `file-routing.yml` and `task-routing.yml` into that app’s `.cursor/routing/`. The skill pack stays the source of truth.
@@ -182,9 +212,11 @@ The assistant asks before destructive actions: `git push`, signing or keystore e
 
 ## First time on an existing app
 
-Read [new-project-init.md](skills/android/android-orchestrator/references/new-project-init.md). It lists what to inspect (modules, architecture, Detekt, tests) and the rule to fit the app’s current design.
+Follow **[Existing Android repo — read this first](#existing-android-repo--read-this-first)** (merge prompt + do-not-overwrite rules).
 
-Gradle defaults assume a single `:app` module. Override module names and commands in the project `AGENTS.md`. See [quality-commands.md](skills/android/android-orchestrator/references/quality-commands.md).
+Then read [new-project-init.md](skills/android/android-orchestrator/references/new-project-init.md) for Gradle modules, architecture, Detekt, tests, and **integrate; do not blindly replace** working design.
+
+Gradle defaults assume a single `:app` module. Override module names and commands in **your merged** project `AGENTS.md`. See [quality-commands.md](skills/android/android-orchestrator/references/quality-commands.md).
 
 ## What is in this repo
 
@@ -193,6 +225,7 @@ Gradle defaults assume a single `:app` module. Override module names and command
 | `skills/android/android-orchestrator` | Hub. Starts from its description. Owns the path, the definition of done, and routing. |
 | Other `skills/android/android-*` | Spokes. The hub reads them when the step or file needs them. |
 | `commands/android-requirement.md` | Slash command `/android-requirement`. Prints the prompt you fill in. |
+| `commands/android-adopt-pack.md` | Slash command `/android-adopt-pack`. Merge pack into an existing app without blind overwrite. |
 | `android-figma`, `android-jira` | Optional spokes for design and ticket traceability. |
 | `rules/*.mdc` | Optional file rules for an Android app. |
 | `scripts/validate_pack.py` | Checks that the pack is still consistent. |
