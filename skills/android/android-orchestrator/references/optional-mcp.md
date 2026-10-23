@@ -1,18 +1,31 @@
 # Optional MCP integrations (Figma, Jira)
 
+For **Detekt** and **Maestro**, see [quality-tooling.md](quality-tooling.md) and [setup-guides.md](setup-guides.md).
+
 Figma and Jira are **never required**. The hub proceeds without them and records **N/A** or **manual** in acceptance when they are absent.
 
 ## Detect before use
 
 1. Call dynamic tool discovery with a pattern (`figma`, `jira`, or `atlassian`) or inspect the namespace (`user-Figma`, or your team’s Jira MCP id).
-2. If the namespace is missing, in **needsAuth**, or **error**: tell the user once what to install, then continue without blocking the lane.
+2. If the namespace is missing, in **needsAuth**, or **error**: ask the user once (see below), then continue without blocking the lane.
 
-| Integration | Typical install | If unavailable |
-|-------------|-----------------|----------------|
-| **Figma** | Cursor **Settings → MCP** → add the [official Figma MCP](https://www.figma.com/developers/api) (or your org’s Figma server). Sign in when prompted. | Skip design compare; note in `docs/acceptance-criteria.md`. |
-| **Jira** | Cursor **Settings → MCP** → add a Jira / Atlassian MCP, **or** use [Atlassian CLI](https://developer.atlassian.com/cloud/acli/) (`acli`) on your PATH. | Track the issue key in docs only; no automatic ticket updates. |
+## When asking the user to install
 
-Do not install MCP servers or CLI tools without the user’s approval. Do not store API tokens in the repo.
+Do **not** send a one-line “please install Figma.” Include the full **Setup guide** from [setup-guides.md](setup-guides.md):
+
+| Tool | Section to share |
+|------|------------------|
+| Figma MCP | **Figma MCP (Cursor)** |
+| Jira MCP or `acli` | **Jira — MCP or Atlassian CLI** |
+
+Then offer: **Set up now** · **Already configured** · **Skip (N/A)**.
+
+| Integration | If unavailable after ask |
+|-------------|-------------------------|
+| **Figma** | Skip design compare; note in `docs/acceptance-criteria.md`. |
+| **Jira** | Track the issue key in docs only; no automatic ticket updates. |
+
+Do not install MCP servers or store API tokens in the repo without user approval.
 
 ## When the hub loads optional spokes
 

@@ -29,6 +29,10 @@ UI automation phase after build/unit/integration. Maestro YAML edits.
 
 ## Rules
 
+### Before the first Maestro run this session
+
+Follow [quality-tooling.md](../android-orchestrator/references/quality-tooling.md). If `maestro` is not on PATH, share the **Maestro CLI** section of [setup-guides.md](../android-orchestrator/references/setup-guides.md) when asking the user. If there is no device or the user skips Maestro, **do not run** `maestro test`; record **Maestro: N/A** and continue.
+
 - [Maestro flows](https://docs.maestro.dev/maestro-flows)
 - [Android](https://docs.maestro.dev/get-started/supported-platform/android)
 - [Selectors](https://docs.maestro.dev/reference/selectors/core-selectors.md)
@@ -55,7 +59,7 @@ For Jetpack Compose, `id:` matches `Modifier.testTag` only when the app sets `Mo
 
 ### UI-change gate
 
-After any user-facing UI change, re-run at least one **smoke** flow before marking the task done (with Gradle unit tests). Typical sequence: install debug APK → `adb shell pm clear <appId>` when the flow assumes empty/first-run state → `maestro test <flow>`.
+When Maestro is **in scope** ([quality-tooling.md](../android-orchestrator/references/quality-tooling.md)), re-run at least one **smoke** flow after a user-facing UI change (with Gradle unit tests). If Maestro is **N/A**, do not run smoke; unit or Compose UI tests cover the change instead. Typical Maestro sequence: install debug APK → `adb shell pm clear <appId>` when the flow assumes empty/first-run state → `maestro test <flow>`.
 
 ### Compose flow tips
 

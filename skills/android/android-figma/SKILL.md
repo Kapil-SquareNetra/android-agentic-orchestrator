@@ -23,7 +23,7 @@ Not for logo-only or token-only mentions with no frame to compare.
 
 ## MCP availability
 
-Follow [optional-mcp.md](../android-orchestrator/references/optional-mcp.md). If Figma MCP is missing, ask the user once to add it under **Cursor Settings → MCP**, then record **Figma compare: skipped (MCP not installed)** in acceptance. Do not block delivery.
+Follow [optional-mcp.md](../android-orchestrator/references/optional-mcp.md). If Figma MCP is missing, ask the user once and include the **Figma MCP (Cursor)** section from [setup-guides.md](../android-orchestrator/references/setup-guides.md) ([Figma help](https://help.figma.com/hc/en-us/articles/39889260656407-Cursor-and-Figma-Set-up-the-MCP-server)). Offer skip → record **Figma compare: skipped (MCP not installed)** in acceptance. Do not block delivery.
 
 When available, use the **Figma** dynamic namespace (often `user-Figma`). Inspect tool schemas before calling. For `use_figma` / design reads, follow the server’s session workflow (`create_session` with `fileKey`, then file tools).
 

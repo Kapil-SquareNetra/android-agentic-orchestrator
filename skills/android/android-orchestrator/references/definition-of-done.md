@@ -9,13 +9,12 @@ Complete when **all** apply (with evidence: commands, test output, or review not
 - Impact analysis is completed (or lane-appropriate skip documented)
 - Architecture is appropriate for the change
 - Kotlin standards are followed
-- `./gradlew detekt` (or project equivalent) passes — see [quality-commands.md](quality-commands.md)
+- When Detekt is **in scope** ([quality-tooling.md](quality-tooling.md)): `./gradlew detekt` passes and there are no unjustified suppressions. When Detekt was skipped or not configured, status shows **Detekt: N/A** — not required.
 - Android Lint passes for affected modules (or documented N/A)
-- No unjustified Detekt suppressions
 - Existing reusable components were considered
 - Loading, empty, error, and content states handled where applicable
 - Navigation is validated when navigation changed
-- Relevant unit, integration, UI, Maestro, and regression tests pass
+- Relevant unit, integration, UI, and regression tests pass. When Maestro is **in scope**, Maestro flows pass; when Maestro was skipped or not installed, status shows **Maestro: N/A** — not required.
 - Security, performance, and accessibility considered
 - Code review passes (hub code-review phase)
 - Acceptance criteria satisfied with evidence

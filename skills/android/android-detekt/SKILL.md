@@ -28,7 +28,11 @@ Enforce Kotlin quality before merge.
 
 - [Detekt Gradle plugin](https://detekt.dev/docs/gettingstarted/gradle)
 
-Run `./gradlew detekt` and module/variant tasks when configured. Configure project appropriately.
+### Before the first Detekt run this session
+
+Follow [quality-tooling.md](../android-orchestrator/references/quality-tooling.md). If there is no `detekt` task, share the **Detekt** section of [setup-guides.md](../android-orchestrator/references/setup-guides.md) when asking the user. If they skip Detekt, **do not run** `./gradlew detekt`; exit with **N/A** in status. Do not add Gradle plugins without approval.
+
+Run `./gradlew detekt` only when the task exists and Detekt is in scope.
 
 Checks include: complexity, smells, naming, style, bugs, long methods, large classes, nesting, unsafe patterns, duplication.
 

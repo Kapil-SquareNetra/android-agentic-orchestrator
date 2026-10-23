@@ -23,7 +23,7 @@ Follow [optional-mcp.md](../android-orchestrator/references/optional-mcp.md).
 
 1. **Jira MCP** — discover with pattern `jira` or `atlassian`. If present and authenticated, fetch issue summary, description, and acceptance fields to enrich FR (do not overwrite user-approved FR).
 2. **Atlassian CLI (`acli`)** — if MCP is missing but `acli` runs (e.g. `acli jira workitem view AND-142`), use read-only CLI output the same way.
-3. **Neither** — ask once whether to install Jira MCP or configure `acli`. Then continue with manual issue key in docs only.
+3. **Neither** — ask once and include **Jira — MCP or Atlassian CLI** from [setup-guides.md](../android-orchestrator/references/setup-guides.md) ([Install ACLI](https://developer.atlassian.com/cloud/acli/guides/install-acli/)). Then continue with manual issue key in docs only if the user skips.
 
 Never commit credentials. Do not transition issues or post comments unless the user explicitly asks.
 

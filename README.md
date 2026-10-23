@@ -107,7 +107,30 @@ flowchart LR
 | **Figma MCP** | Reads frames while building UI; at acceptance, compares Figma and app screenshots | UI follows FR and tests only; acceptance notes **Figma compare: skipped** |
 | **Jira MCP or `acli`** | Pulls issue summary into the FR **Tracking** section | Keep the issue key in docs manually |
 
-Install MCP servers under **Cursor Settings → MCP**. Details: [optional-mcp.md](skills/android/android-orchestrator/references/optional-mcp.md).
+Install MCP servers under **Cursor Settings → MCP**. When the assistant prompts you, it should include the matching steps from [setup-guides.md](skills/android/android-orchestrator/references/setup-guides.md) (Figma, Jira/`acli`, Detekt, Maestro). Overview: [optional-mcp.md](skills/android/android-orchestrator/references/optional-mcp.md).
+
+## Detekt and Maestro (optional quality gates)
+
+The assistant asks once whether you use Detekt or Maestro. If a tool is **not set up** or you **skip** it, that gate is **not run** — the lane continues with build and unit tests (and other checks that still apply). Status shows **N/A** with a short reason, not **blocked**.
+
+```mermaid
+flowchart LR
+  detektGate[Detekt phase]
+  detektGate --> gradle{detekt task and user wants it?}
+  gradle -->|No or skip| skipD[Detekt N/A — do not run]
+  gradle -->|Yes| runD[Run detekt]
+  maestroGate[Maestro phase]
+  maestroGate --> cli{CLI, device, user wants Maestro?}
+  cli -->|No or skip| skipM[Maestro N/A — do not run]
+  cli -->|Yes| runM[Run maestro test]
+```
+
+| Tool | When it runs | When it is skipped |
+|------|----------------|-------------------|
+| **Detekt** | Project has a `detekt` Gradle task and you did not skip it | No plugin yet, or you chose not to use Detekt |
+| **Maestro** | CLI installed, device ready if needed, and you did not skip it | CLI not installed, no device and you skip Maestro, or you chose not to use Maestro |
+
+Full behavior: [quality-tooling.md](skills/android/android-orchestrator/references/quality-tooling.md). Step-by-step install guides (shown when the assistant asks you to set up a tool): [setup-guides.md](skills/android/android-orchestrator/references/setup-guides.md).
 
 ## How the assistant stays focused
 
@@ -153,7 +176,7 @@ cp skills/android/android-orchestrator/assets/AGENTS.md /path/to/android-app/AGE
 
 Optional: copy `file-routing.yml` and `task-routing.yml` into that app’s `.cursor/routing/`. The skill pack stays the source of truth.
 
-The app needs a Gradle wrapper. Connected tests need an emulator or device. Maestro needs the Maestro CLI. If you use cloud agents, enable **Sync Skills for Cloud Agents** in Cursor Settings.
+The app needs a Gradle wrapper. Detekt and Maestro are optional; add them when you want those gates. If you use cloud agents, enable **Sync Skills for Cloud Agents** in Cursor Settings.
 
 The assistant asks before destructive actions: `git push`, signing or keystore edits, committing `local.properties` or secrets, deleting Room migrations, and `adb uninstall`.
 
@@ -173,6 +196,7 @@ Gradle defaults assume a single `:app` module. Override module names and command
 | `android-figma`, `android-jira` | Optional spokes for design and ticket traceability. |
 | `rules/*.mdc` | Optional file rules for an Android app. |
 | `scripts/validate_pack.py` | Checks that the pack is still consistent. |
+| `skills/.../references/setup-guides.md` | Install steps for Figma, Jira, Detekt, and Maestro (shared when the assistant asks). |
 
 ```text
 INDEX.md                     Phases and skill catalog

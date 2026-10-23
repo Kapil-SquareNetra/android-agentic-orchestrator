@@ -174,7 +174,7 @@ Replace `{…}` placeholders with your content. **Examples** below use a fiction
 
 ### Figma
 
-Link frames the UI should match. The assistant can read design context when [Figma MCP](https://www.figma.com/developers/api) is installed in Cursor, and compare screenshots at acceptance.
+Link frames the UI should match. The assistant can read design context when Figma MCP is installed in Cursor (setup: orchestrator [setup-guides.md](../../android-orchestrator/references/setup-guides.md)), and compare screenshots at acceptance.
 
 | Screen / flow | Figma URL (with `node-id` when possible) |
 |---------------|------------------------------------------|
@@ -189,7 +189,7 @@ Link frames the UI should match. The assistant can read design context when [Fig
 | Issue key | *Example:* `AND-142` |
 | Link | *Example:* `https://your-org.atlassian.net/browse/AND-142` |
 
-Use a **Jira MCP** in Cursor or **Atlassian CLI** (`acli`) if you want the assistant to pull ticket text. Neither is required.
+Use a **Jira MCP** in Cursor or **Atlassian CLI** (`acli`) if you want the assistant to pull ticket text (setup: [setup-guides.md](../../android-orchestrator/references/setup-guides.md)). Neither is required.
 
 *(Leave blank if work is not tracked in Jira.)*
 

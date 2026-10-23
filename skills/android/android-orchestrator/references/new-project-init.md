@@ -7,7 +7,8 @@ Before applying this workflow to a project, inspect:
 - Design system and navigation setup
 - Testing layout (`test`, `androidTest`, Maestro flows)
 - Build variants and CI/CD
-- Detekt configuration
+- Detekt configuration (Gradle `detekt` task — see [quality-tooling.md](quality-tooling.md))
+- Maestro CLI on developer machines and flow folder (`.maestro/` or `maestro/`)
 - Existing Cursor rules and skills
 
 **Integrate** the universal workflow; **do not blindly replace** working architecture.

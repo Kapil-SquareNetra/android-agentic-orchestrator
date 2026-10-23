@@ -55,7 +55,7 @@ Run spec compliance before quality. Label each finding Critical, Important, or S
 
 ### Quality
 
-- Detekt passes; no unjustified suppressions; no unnecessary dependencies
+- When Detekt was in scope: it passes; no unjustified suppressions; no unnecessary dependencies
 
 ### Testing
 

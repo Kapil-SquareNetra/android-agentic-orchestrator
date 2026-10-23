@@ -4,7 +4,8 @@ Use with `android-maestro` in the UI automation phase. Commands: [quality-comman
 
 ## Before running
 
-- Confirm emulator or device is available; if not, document **blocked** and run Compose UI tests for the same AC when feasible.
+- Per [quality-tooling.md](quality-tooling.md): if Maestro is not in scope (CLI missing, no device, user skipped), **do not run** Maestro flows; record **N/A**.
+- When Maestro **is** in scope: confirm CLI (`maestro --version`) and emulator or device before `maestro test`.
 - Read `appId` from the application `AndroidManifest.xml` (or product flavor manifest).
 - For credentials, use Maestro `env` or local-only config files — never commit secrets; do not echo env values in agent logs.
 - If the smoke path depends on **empty state** or first launch, run `adb shell pm clear <appId>` (or uninstall) before the flow.

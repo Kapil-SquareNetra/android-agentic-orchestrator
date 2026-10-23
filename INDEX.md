@@ -98,7 +98,7 @@ The hub **reads** spoke `SKILL.md` files when the phase or file requires them. T
 | Acceptance | `android-functional-requirements`; `android-figma` when Figma URLs in docs; `android-jira` when Jira key in docs |
 | Retrospective | `android-retrospective` |
 
-Canonical routing: `skills/android/android-orchestrator/references/file-routing.yml`, `task-routing.yml`, and `skill-dependencies.yml`. Quality commands: `quality-commands.md`. Maestro device fallback: `maestro-runbook.md`. CI runs `python scripts/validate_pack.py` (routing cases in `tests/routing_cases.yml`).
+Canonical routing: `skills/android/android-orchestrator/references/file-routing.yml`, `task-routing.yml`, and `skill-dependencies.yml`. Quality commands: `quality-commands.md`. Detekt / Maestro: `quality-tooling.md`. Install guides for Figma, Jira, Detekt, Maestro: `setup-guides.md`. Optional Figma / Jira: `optional-mcp.md`. Maestro device fallback: `maestro-runbook.md`. CI runs `python scripts/validate_pack.py` (routing cases in `tests/routing_cases.yml`).
 
 ## Skill catalog
 
