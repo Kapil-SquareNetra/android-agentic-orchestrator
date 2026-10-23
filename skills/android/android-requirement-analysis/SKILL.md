@@ -19,7 +19,7 @@ Requirement phase only. Hub loads this with `android-functional-requirements` an
 
 ## Inputs
 
-- **Initial requirement** — user text or [assets/initial-requirement-template.md](assets/initial-requirement-template.md) (project copy e.g. `docs/initial-requirement.md`). Execution may start when all **Required to start** sections in that template are filled.
+- **Initial requirement** — user text or [assets/initial-requirement-template.md](assets/initial-requirement-template.md) (project copy e.g. `docs/initial-requirement.md`). Execution may start when all **Required to start** sections in that template are filled. Optional Figma / Jira blocks do not block start.
 - Optional plan-driven path: existing `docs/implementation-plan.md`.
 
 ## Outputs

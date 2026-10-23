@@ -53,3 +53,11 @@ tasks:
   notifications:
     skills: [architecture, security]
     trigger: POST_NOTIFICATIONS, notification channels, or FCM push handling.
+
+  figma:
+    skills: [figma, compose, material, material-components]
+    trigger: figma.com/design or figma.com/make URL, Figma frame, design reference in docs, or visual parity with Figma.
+
+  jira:
+    skills: [jira, functional-requirements]
+    trigger: Jira issue key (e.g. PROJ-123), Atlassian, acli, or a tracking ticket in requirement docs.

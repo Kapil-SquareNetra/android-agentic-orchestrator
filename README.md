@@ -43,7 +43,11 @@ flowchart TD
   check -->|Pass| more{More steps?}
   more -->|Yes| step
   more -->|No| review[Review, then acceptance with evidence]
-  review --> endNode["done, blocked, or next"]
+  review --> figmaOpt{Figma link in docs?}
+  figmaOpt -->|Yes and MCP on| visual[Compare app and Figma screenshots]
+  figmaOpt -->|No or MCP off| signoff[Record test evidence]
+  visual --> signoff
+  signoff --> endNode["done, blocked, or next"]
 ```
 
 On a failed check, the assistant classifies the cause, fixes that layer, and reruns the same command. The same failure three times, with nothing new learned, stops the loop and returns **blocked**.
@@ -77,6 +81,33 @@ flowchart TD
 | `docs/testing-strategy.md` | Which cases run as small tests, and which few run on a device. |
 | `docs/acceptance-criteria.md` | Proof from a run after the last code change. |
 | `docs/retrospective.md` | What to remember next time. |
+
+Optional fields in the requirement and FR templates hold **Figma** frame links and a **Jira** issue key. Neither is required.
+
+## Optional: Figma and Jira
+
+```mermaid
+flowchart LR
+  docs[You add links in the requirement or FR]
+  docs --> detect{Assistant detects link}
+  detect -->|Figma URL| figma[Figma spoke]
+  detect -->|Jira key| jira[Jira spoke]
+  figma --> mcpF{Figma MCP installed?}
+  mcpF -->|No| askF[Ask once to add Figma in Settings → MCP]
+  mcpF -->|Yes| design[Design context at build; screenshot compare at acceptance]
+  jira --> mcpJ{Jira MCP or acli?}
+  mcpJ -->|No| askJ[Ask once to add Jira MCP or Atlassian CLI]
+  mcpJ -->|Yes| ticket[Read ticket for context; update only if you ask]
+  askF --> continue[Delivery continues without blocking]
+  askJ --> continue
+```
+
+| Tool | What it adds | If you skip it |
+|------|----------------|----------------|
+| **Figma MCP** | Reads frames while building UI; at acceptance, compares Figma and app screenshots | UI follows FR and tests only; acceptance notes **Figma compare: skipped** |
+| **Jira MCP or `acli`** | Pulls issue summary into the FR **Tracking** section | Keep the issue key in docs manually |
+
+Install MCP servers under **Cursor Settings → MCP**. Details: [optional-mcp.md](skills/android/android-orchestrator/references/optional-mcp.md).
 
 ## How the assistant stays focused
 
@@ -139,6 +170,7 @@ Gradle defaults assume a single `:app` module. Override module names and command
 | `skills/android/android-orchestrator` | Hub. Starts from its description. Owns the path, the definition of done, and routing. |
 | Other `skills/android/android-*` | Spokes. The hub reads them when the step or file needs them. |
 | `commands/android-requirement.md` | Slash command `/android-requirement`. Prints the prompt you fill in. |
+| `android-figma`, `android-jira` | Optional spokes for design and ticket traceability. |
 | `rules/*.mdc` | Optional file rules for an Android app. |
 | `scripts/validate_pack.py` | Checks that the pack is still consistent. |
 

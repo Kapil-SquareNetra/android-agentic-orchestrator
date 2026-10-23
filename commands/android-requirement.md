@@ -83,6 +83,18 @@ Use **android-orchestrator** for this Android feature. This message is the initi
 
 {Blockers, or "None".}
 
+## Optional — Figma (skip if unused)
+
+| Screen / flow | Figma URL |
+|---------------|-----------|
+| | |
+
+## Optional — Jira (skip if unused)
+
+| Issue key | Link |
+|-----------|------|
+| | |
+
 ## Plan-driven (optional)
 
 {Path to an existing docs/implementation-plan.md, or leave blank.}

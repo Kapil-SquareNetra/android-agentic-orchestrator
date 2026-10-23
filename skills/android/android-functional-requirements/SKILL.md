@@ -38,6 +38,8 @@ Use the table:
 
 Also document where relevant: user actions, inputs, outputs, validation, success, failure, empty, loading, error, permissions, authentication, network, persistence, navigation, offline, analytics, accessibility, edge cases.
 
+Copy optional **Figma** and **Jira** fields from the initial requirement into the FR **Design references** and **Tracking** sections when the user provided them.
+
 Official context: [Guide to app architecture](https://developer.android.com/topic/architecture) for layer vocabulary.
 
 ### Test cases (same step as the FR)

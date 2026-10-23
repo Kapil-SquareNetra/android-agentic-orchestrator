@@ -37,6 +37,18 @@
 
 -
 
+## Design references (optional)
+
+| Screen / FR IDs | Figma URL | Notes |
+|-----------------|-----------|--------|
+| | | |
+
+## Tracking (optional)
+
+| Jira key | Link | Summary (snapshot) |
+|----------|------|---------------------|
+| | | |
+
 ## Test cases
 
 Positive, negative, and edge cases for these IDs are in `docs/test-cases.md`, drafted with this document.

@@ -19,6 +19,8 @@ Complete when **all** apply (with evidence: commands, test output, or review not
 - Security, performance, and accessibility considered
 - Code review passes (hub code-review phase)
 - Acceptance criteria satisfied with evidence
+- When docs list a **Figma** frame: design verification recorded in acceptance (screenshot compare via Figma MCP + app capture) or skip reason (MCP not installed, no device, user declined)
+- When docs list a **Jira** key: FR tracking matches the issue; ticket updates only if the user asked
 - Documentation updated to match implementation
 - Retrospective captured for meaningful work (feature lane)
 - New guardrails in skills/rules only for **recurring universal** failure patterns

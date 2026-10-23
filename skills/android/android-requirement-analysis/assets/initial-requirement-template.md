@@ -170,6 +170,31 @@ Replace `{…}` placeholders with your content. **Examples** below use a fiction
 
 ---
 
+## Optional — design and tracking (skip if unused)
+
+### Figma
+
+Link frames the UI should match. The assistant can read design context when [Figma MCP](https://www.figma.com/developers/api) is installed in Cursor, and compare screenshots at acceptance.
+
+| Screen / flow | Figma URL (with `node-id` when possible) |
+|---------------|------------------------------------------|
+| *Example:* Booking summary | `https://www.figma.com/design/…/…?node-id=1-234` |
+
+*(Leave blank if there is no Figma file.)*
+
+### Jira
+
+| Field | Value |
+|-------|--------|
+| Issue key | *Example:* `AND-142` |
+| Link | *Example:* `https://your-org.atlassian.net/browse/AND-142` |
+
+Use a **Jira MCP** in Cursor or **Atlassian CLI** (`acli`) if you want the assistant to pull ticket text. Neither is required.
+
+*(Leave blank if work is not tracked in Jira.)*
+
+---
+
 ## Optional (plan-driven shortcut)
 
 If you already have `docs/implementation-plan.md`, link it here and mark **Plan-driven**. The hub will validate the plan instead of recreating it.

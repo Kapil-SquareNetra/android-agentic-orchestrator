@@ -11,7 +11,7 @@ description: >-
 
 # Android orchestrator (hub)
 
-Read [references/definition-of-done.md](references/definition-of-done.md) before marking work complete. Routing: [file-routing.yml](references/file-routing.yml), [task-routing.yml](references/task-routing.yml), [skill-dependencies.yml](references/skill-dependencies.yml). Quality commands: [quality-commands.md](references/quality-commands.md). New projects: [new-project-init.md](references/new-project-init.md).
+Read [references/definition-of-done.md](references/definition-of-done.md) before marking work complete. Routing: [file-routing.yml](references/file-routing.yml), [task-routing.yml](references/task-routing.yml), [skill-dependencies.yml](references/skill-dependencies.yml). Quality commands: [quality-commands.md](references/quality-commands.md). New projects: [new-project-init.md](references/new-project-init.md). Optional Figma / Jira: [optional-mcp.md](references/optional-mcp.md).
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Understand → FR → impact → (past-miss checklist during FR/impact) → arch
 | Test | `android-testing`, testing strategy from FR assets; commands in [quality-commands.md](references/quality-commands.md) |
 | UI automation | `android-maestro`, `android-testing`, FR context |
 | Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility`, `android-material`, and `android-material-components` when UI changed |
-| Acceptance | `android-functional-requirements` (AC template), FR and test evidence |
+| Acceptance | `android-functional-requirements` (AC template), FR and test evidence; add `android-figma` when docs list Figma URLs (visual compare if MCP available); add `android-jira` when a Jira key is linked |
 | Retrospective | `android-retrospective` |
 
 Spokes use `disable-model-invocation: true`. Read each one at `../<folder>/SKILL.md` (sibling of this skill). Aliases are in `file-routing.yml`.

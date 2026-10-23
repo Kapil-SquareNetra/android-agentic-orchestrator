@@ -39,3 +39,7 @@ dependencies:
     requires: [functional-requirements, impact-analysis]
   impact-analysis:
     requires: [functional-requirements]
+  figma:
+    requires: [compose, maestro, testing]
+  jira:
+    requires: [functional-requirements]

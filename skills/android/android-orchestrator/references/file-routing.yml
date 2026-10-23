@@ -23,6 +23,8 @@ skill_aliases:
   code-review: android-code-review
   requirement-analysis: android-requirement-analysis
   impact-analysis: android-impact-analysis
+  figma: android-figma
+  jira: android-jira
 
 routing:
   "**/*.kt":

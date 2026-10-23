@@ -62,7 +62,7 @@ Detekt → Build → Unit → Integration → Maestro/UI
 Code review              →  architecture, kotlin, security, performance, testing
         │
         ▼
-Acceptance criteria      →  docs/acceptance-criteria.md (evidence)
+Acceptance criteria      →  docs/acceptance-criteria.md (evidence; optional Figma screenshot compare)
         │
         ▼
 Retrospective            →  docs/retrospective.md
@@ -95,7 +95,7 @@ The hub **reads** spoke `SKILL.md` files when the phase or file requires them. T
 | Test | `android-testing` |
 | UI automation | `android-maestro`, `android-testing` |
 | Code review | `android-architecture`, `android-kotlin`, `android-security`, `android-performance`, `android-testing`, `android-code-review`; add `android-accessibility`, `android-material`, and `android-material-components` when UI changed |
-| Acceptance | `android-functional-requirements` |
+| Acceptance | `android-functional-requirements`; `android-figma` when Figma URLs in docs; `android-jira` when Jira key in docs |
 | Retrospective | `android-retrospective` |
 
 Canonical routing: `skills/android/android-orchestrator/references/file-routing.yml`, `task-routing.yml`, and `skill-dependencies.yml`. Quality commands: `quality-commands.md`. Maestro device fallback: `maestro-runbook.md`. CI runs `python scripts/validate_pack.py` (routing cases in `tests/routing_cases.yml`).
@@ -127,6 +127,8 @@ Canonical routing: `skills/android/android-orchestrator/references/file-routing.
 | `android-accessibility` | A11y on screens |
 | `android-code-review` | Pre-merge checklist |
 | `android-retrospective` | Post-delivery lessons |
+| `android-figma` | Optional Figma MCP design context and visual acceptance |
+| `android-jira` | Optional Jira MCP or `acli` traceability |
 
 ## Commands
 
