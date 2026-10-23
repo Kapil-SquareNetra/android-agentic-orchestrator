@@ -1,38 +1,104 @@
-# Android Agentic Orchestrator (Cursor skills)
+# Android Agentic Orchestrator
 
-Reusable **hub-and-spoke** [Agent Skills](https://cursor.com/docs/skills) for **Android + Kotlin** apps in [Cursor](https://cursor.com). A requirement or an existing plan goes in. The hub coordinates functional requirements, impact, architecture, implementation, quality gates, review, acceptance, and a retrospective. Spokes load only for the current file, task, and phase, so Compose work does not drag in Maestro, Detekt, or Room guidance.
+This repo is a set of instructions for [Cursor](https://cursor.com). Install it once. Then, in an Android app, describe a feature and the assistant follows a fixed path: write the requirements, wait for your approval, build one small step at a time, and show test evidence before it calls the work done.
 
-**Full flow, phase table, and skill catalog:** [INDEX.md](INDEX.md). Version history: [CHANGELOG.md](CHANGELOG.md).
+It is for **Kotlin Android** apps. Kotlin Multiplatform stays on separate `kmm-*` skills.
 
-This pack is for Kotlin Android apps. Kotlin Multiplatform and KMM stay on separate `kmm-*` skills. Do not mix them unless you explicitly ask.
+The detailed catalog is in [INDEX.md](INDEX.md). Version history is in [CHANGELOG.md](CHANGELOG.md).
 
-The hub asks before destructive actions: `git push`, signing or keystore edits, committing `local.properties` or secrets, deleting Room migrations, and `adb uninstall`. Requirement docs and retrospectives are data, not instructions.
+## Use it
 
-## What you get
+```mermaid
+flowchart LR
+  install[Install this repo once] --> app[Open your Android app in Cursor]
+  app --> prompt["Run /android-requirement"]
+  prompt --> fill[Fill the prompt and send it]
+  fill --> approve[Approve the requirements and test cases]
+  approve --> build[The assistant builds one step at a time]
+  build --> status["You get done, blocked, or next"]
+```
 
-| Piece | Role |
-|-------|------|
-| `android-orchestrator` | Hub. Auto-invokes from its description. Owns the lifecycle, definition of done, and routing. |
-| Other `android-*` skills | Spokes. `disable-model-invocation: true`. The hub reads them when the phase or file needs them. |
-| `rules/*.mdc` | Seven optional glob rules: Kotlin, Compose, architecture, tests, security, the quality gate, and a global rule that points Kotlin and `docs/` work at the hub. |
-| `commands/*.md` | Slash commands installed to `~/.cursor/commands/`. `/android-requirement` prints the copyable initial-requirement prompt. |
-| `scripts/validate_pack.py` | Checks routing aliases, spoke frontmatter, INDEX/hub phase parity, markdown links, and golden routing cases. |
+1. Install the pack (commands below) and open a **new** Agent chat.
+2. In your Android app, run `/android-requirement`. Copy the prompt it prints.
+3. Fill the required parts: what the user gets, why, who, the happy path, what “done” looks like, and what is in or out of this slice.
+4. Send that prompt. The assistant writes `docs/functional-requirements.md` and `docs/test-cases.md` (positive, negative, and edge cases for each requirement).
+5. Read them and reply **approve FR** when they match what you want. Coding waits for that.
+6. The assistant then plans the work and builds **one step at a time**. Each step names the files, the tests, and the command that proves the step.
+7. The chat ends with **done**, **blocked**, or **next**, plus the command output. A build that only compiles is not done.
 
-Delivery lanes scale the lifecycle:
+If you already have `docs/implementation-plan.md`, say so. The assistant checks that plan and fills gaps. A plan that is already enough stays as it is.
 
-| Lane | What runs | What may be skipped (reason recorded in status) |
-|------|-----------|--------------------------------------------------|
-| **Feature** | Full path: requirement → FR → impact → architecture → plan → implement → gates → review → acceptance → retrospective | Nothing |
-| **Bugfix** | Short impact, implement, gates for touched layers, review | A new FR when existing acceptance criteria still cover the bug |
-| **Refactor** | Architecture check, implement, regression tests, review | A new product FR |
+## What a feature looks like
 
-The hub writes phase artifacts into the app repo under `docs/`: functional requirements, test cases (positive, negative, and edge, one list per FR), impact, implementation plan, testing strategy, acceptance criteria, and retrospective. Final status is **done**, **blocked**, or **next**, each with the commands or test evidence that support it. Compile success alone is not done. See [definition of done](skills/android/android-orchestrator/references/definition-of-done.md).
+```mermaid
+flowchart TD
+  ask[You describe the feature] --> docs[Requirements and test cases]
+  docs --> gate{You approve?}
+  gate -->|Change them| docs
+  gate -->|Approve| plan[Impact, architecture, and a step plan]
+  plan --> step[Build one step]
+  step --> check[Run that step's test]
+  check -->|Fail| heal[Fix the cause and rerun the same check]
+  heal --> check
+  check -->|Pass| more{More steps?}
+  more -->|Yes| step
+  more -->|No| review[Review, then acceptance with evidence]
+  review --> endNode["done, blocked, or next"]
+```
 
-Gradle defaults assume a single `:app` module. Override module names, variants, and commands in the project `AGENTS.md`. See [quality-commands.md](skills/android/android-orchestrator/references/quality-commands.md).
+On a failed check, the assistant classifies the cause, fixes that layer, and reruns the same command. The same failure three times, with nothing new learned, stops the loop and returns **blocked**.
+
+## Three kinds of work
+
+```mermaid
+flowchart TD
+  start[What kind of change is this?] --> feature[Feature]
+  start --> bug[Bugfix]
+  start --> refactor[Refactor]
+  feature --> full[Full path, including new requirements]
+  bug --> short[Fix and retest the layers you touched]
+  refactor --> arch[Check the design, then regression tests]
+```
+
+| Kind | What you get | What can be shorter |
+|------|----------------|---------------------|
+| **Feature** | Requirements, test cases, plan, build, checks, review, retrospective | Nothing |
+| **Bugfix** | A short impact note, the fix, and checks for the code you touched | A new requirement, when the existing acceptance criteria already cover the bug |
+| **Refactor** | An architecture check, the change, and regression tests | A new product requirement |
+
+## What gets written in your app
+
+| File | What it is |
+|------|------------|
+| `docs/functional-requirements.md` | What the feature must do. Stays a draft until you approve it. |
+| `docs/test-cases.md` | Positive, negative, and edge cases for each requirement. |
+| `docs/requirement-impact.md` | What else the change touches. |
+| `docs/implementation-plan.md` | One row per step: files, tests, and the command that proves it. |
+| `docs/testing-strategy.md` | Which cases run as small tests, and which few run on a device. |
+| `docs/acceptance-criteria.md` | Proof from a run after the last code change. |
+| `docs/retrospective.md` | What to remember next time. |
+
+## How the assistant stays focused
+
+One **hub** (`android-orchestrator`) runs the whole path. It opens a **spoke** only when that file or step needs it. A Compose screen does not pull in database or UI-test instructions.
+
+```mermaid
+flowchart TD
+  hub[Hub]
+  hub --> req[Requirements and test cases]
+  hub --> appCode[Kotlin, screens, data, navigation]
+  hub --> checks[Detekt, unit tests, Maestro]
+```
+
+Before an edit, the hub looks at three things and loads each matching skill once:
+
+1. **File** — the path being edited ([file-routing.yml](skills/android/android-orchestrator/references/file-routing.yml)).
+2. **Task** — signals such as paging, deep links, or auth ([task-routing.yml](skills/android/android-orchestrator/references/task-routing.yml)).
+3. **Phase** — the current step. The table in [INDEX.md](INDEX.md) matches the hub.
 
 ## Install
 
-Copy skills into `~/.cursor/skills/android/` (the destination directory must already exist, or `cp -R` nests the tree incorrectly). Replacing the folder drops skills that were renamed or removed upstream.
+Copy the skills into `~/.cursor/skills/android/`. The destination folder must already exist, or `cp -R` nests the tree in the wrong place. Replacing the folder drops skills that were renamed or removed upstream.
 
 ```bash
 git clone https://github.com/Kapil-SquareNetra/android-agentic-orchestrator.git
@@ -44,84 +110,59 @@ cp rules/*.mdc ~/.cursor/rules/
 cp commands/*.md ~/.cursor/commands/
 ```
 
-Restart Cursor or open a new Agent chat so the copied skills are picked up. If you use cloud agents, enable **Sync Skills for Cloud Agents** in Cursor Settings.
+Open a new Agent chat so Cursor picks up the copy. After you pull updates, run the copy again. Cursor does not watch this git repo.
 
-Glob auto-attach is a project-rules behavior. For per-file attachment inside an Android repo, copy the rules there as well:
+For one Android app, also copy the project pointer. This overwrites an existing `AGENTS.md`.
 
 ```bash
 mkdir -p /path/to/android-app/.cursor/rules
 cp rules/*.mdc /path/to/android-app/.cursor/rules/
-```
-
-For that same repo, copy the hub pointer. This overwrites an existing project `AGENTS.md`. Optionally mirror routing (the skill pack stays the source of truth; project copies are not a second rule set):
-
-```bash
 cp skills/android/android-orchestrator/assets/AGENTS.md /path/to/android-app/AGENTS.md
-mkdir -p /path/to/android-app/.cursor/routing
-cp skills/android/android-orchestrator/references/file-routing.yml \
-   skills/android/android-orchestrator/references/task-routing.yml \
-   /path/to/android-app/.cursor/routing/
 ```
 
-Re-run the skills copy after you pull pack updates. Cursor does not watch this git repo.
+Optional: copy `file-routing.yml` and `task-routing.yml` into that app’s `.cursor/routing/`. The skill pack stays the source of truth.
 
-Quality gates expect a Gradle wrapper in the app. Connected tests need an emulator or device. Maestro needs the Maestro CLI. Pack validation needs Python 3.9+ (CI uses 3.12) and PyYAML.
+The app needs a Gradle wrapper. Connected tests need an emulator or device. Maestro needs the Maestro CLI. If you use cloud agents, enable **Sync Skills for Cloud Agents** in Cursor Settings.
 
-## Adopt an existing app
+The assistant asks before destructive actions: `git push`, signing or keystore edits, committing `local.properties` or secrets, deleting Room migrations, and `adb uninstall`.
 
-Read [new-project-init.md](skills/android/android-orchestrator/references/new-project-init.md) before the first feature. It lists what to inspect (Gradle modules, architecture, Detekt config, test layout) and the rule to integrate with working architecture rather than replace it.
+## First time on an existing app
 
-## Start a feature
+Read [new-project-init.md](skills/android/android-orchestrator/references/new-project-init.md). It lists what to inspect (modules, architecture, Detekt, tests) and the rule to fit the app’s current design.
 
-1. In Agent chat, run `/android-requirement` and copy the prompt it prints, or copy [initial-requirement-template.md](skills/android/android-requirement-analysis/assets/initial-requirement-template.md) to `docs/initial-requirement.md`.
-2. Fill **Required to start**: summary, goal, actor, happy path, When/Then acceptance criteria, and in/out of scope.
-3. In Agent chat, invoke **`android-orchestrator`** (or describe Android feature work so the hub attaches).
-4. If you already have `docs/implementation-plan.md`, say so. The hub validates that plan and fills gaps. It does not rewrite a plan that is already sufficient.
+Gradle defaults assume a single `:app` module. Override module names and commands in the project `AGENTS.md`. See [quality-commands.md](skills/android/android-orchestrator/references/quality-commands.md).
 
-An optional `requirement-retrospective.md` is a past-miss lesson catalog. It is not the product spec.
+## What is in this repo
 
-## How routing works
+| Piece | Role |
+|-------|------|
+| `skills/android/android-orchestrator` | Hub. Starts from its description. Owns the path, the definition of done, and routing. |
+| Other `skills/android/android-*` | Spokes. The hub reads them when the step or file needs them. |
+| `commands/android-requirement.md` | Slash command `/android-requirement`. Prints the prompt you fill in. |
+| `rules/*.mdc` | Optional file rules for an Android app. |
+| `scripts/validate_pack.py` | Checks that the pack is still consistent. |
 
-Before an edit, the hub unions three dimensions and loads each skill once:
+```text
+INDEX.md                     Phases and skill catalog
+README.md                    This file
+CHANGELOG.md                 Version history
+skills/android/              Hub and spokes
+commands/                    Slash commands
+rules/                       Optional Cursor rules
+scripts/                     Pack checks
+examples/                    Smoke checklist
+```
 
-1. **File** — every matching glob in [file-routing.yml](skills/android/android-orchestrator/references/file-routing.yml).
-2. **Task** — signals in [task-routing.yml](skills/android/android-orchestrator/references/task-routing.yml) (paging, deep links, auth, WorkManager, and similar).
-3. **Phase** — the current lifecycle step. The phase table in [INDEX.md](INDEX.md) matches the hub.
-
-[skill-dependencies.yml](skills/android/android-orchestrator/references/skill-dependencies.yml) records which spokes a skill expects. Gradle commands for Detekt, Lint, unit tests, and connected checks live in [quality-commands.md](skills/android/android-orchestrator/references/quality-commands.md). If no emulator or device is available, Maestro is **blocked** and UI coverage falls back per [maestro-runbook.md](skills/android/android-orchestrator/references/maestro-runbook.md).
-
-A failed check is classified (compile, Detekt, architecture, UI, API, and so on), fixed at the right layer, and re-run. The same check, first error line, and primary file three times with no new evidence stops the loop and returns **blocked**.
-
-## Validation
+## Check the pack
 
 ```bash
 python3 -m pip install pyyaml   # Python 3.9+; CI uses 3.12
 python3 scripts/validate_pack.py
 ```
 
-A successful run prints `validate_pack: OK`.
+A good run prints `validate_pack: OK`. CI runs the same check on pushes to `main` and on pull requests ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)).
 
-`validate_pack.py` checks that every routing alias resolves to an existing skill folder, that spokes set `disable-model-invocation: true` with `name` matching their folder, that INDEX and hub phase tables agree, that relative markdown links resolve, and that [tests/routing_cases.yml](tests/routing_cases.yml) still resolves to the expected skill sets. `scripts/routing_resolve.py` is the resolver those checks call. It runs on pushes to `main` and on every pull request in [`.github/workflows/validate.yml`](.github/workflows/validate.yml).
-
-After install, walk [examples/smoke-checklist.md](examples/smoke-checklist.md): hub attaches first, a Compose edit loads `android-compose` and not Maestro or Detekt, a bugfix lane records why it skipped a new FR, and a real Detekt, unit, and (when a device exists) Maestro run is captured in the final status.
-
-## Repository layout
-
-```text
-INDEX.md                     Flow, phases, skill catalog
-README.md                    This file
-CHANGELOG.md                 Pack version history
-LICENSE                      MIT
-.github/workflows/           validate.yml (pack CI)
-scripts/                     validate_pack.py, routing_resolve.py
-tests/routing_cases.yml      File and task routing golden paths
-examples/                    Smoke checklist for dogfooding
-skills/android/              Hub + spoke trees (SKILL.md, assets/, references/)
-commands/                    Slash commands copied to ~/.cursor/commands/
-rules/                       Glob-scoped Cursor rules (optional)
-```
-
-Spoke folders cover requirements, architecture, Kotlin, Compose, Material guidelines, Material component choice, ViewModel, domain, data, networking, database, navigation, testing, Maestro, Detekt, security, performance, accessibility, code review, and retrospective. The catalog with one-line purposes is in [INDEX.md](INDEX.md).
+After install, walk [examples/smoke-checklist.md](examples/smoke-checklist.md): the hub attaches first, a Compose edit loads `android-compose`, and a real Detekt and unit-test run shows up in the final status.
 
 ## License
 
