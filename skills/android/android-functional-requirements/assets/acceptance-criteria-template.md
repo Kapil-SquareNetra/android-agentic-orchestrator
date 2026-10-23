@@ -1,8 +1,10 @@
 # Acceptance criteria — {Feature name}
 
-| FR / AC ID | Criterion | Evidence (test or command) | Status |
-|------------|-----------|----------------------------|--------|
-| | | | |
+Evidence is the command output from a run after the last code change.
+
+| FR / AC ID | TC IDs | Criterion | Evidence (command and result) | Status |
+|------------|--------|-----------|-------------------------------|--------|
+| | | | | |
 
 ## Sign-off
 

@@ -8,7 +8,9 @@ Override in project `AGENTS.md` when module names or variants differ. Record the
 | Android Lint | `./gradlew :app:lintDebug` | Replace `:app` with the application module. |
 | Build | `./gradlew :app:assembleDebug` | |
 | Unit tests | `./gradlew :app:testDebugUnitTest` | |
+| One unit test | `./gradlew :app:testDebugUnitTest --tests "com.example.feature.MyViewModelTest"` | Re-run this on self-heal before the full suite. |
 | Instrumented | `./gradlew :app:connectedDebugAndroidTest` | Requires a running emulator or device. |
+| One instrumented test | `./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.feature.MyScreenTest` | |
 | Maestro | `maestro test <flow-or-directory>` | Typical dirs: `.maestro/` or `maestro/`. |
 
 Mark a gate **N/A** in status only when the change cannot affect that layer (document why).

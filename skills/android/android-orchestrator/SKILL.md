@@ -2,10 +2,11 @@
 name: android-orchestrator
 description: >-
   Coordinates Android-only agentic delivery from a requirement or an existing
-  plan through FRs, impact, architecture, implementation, Detekt, build, tests,
-  Maestro, self-heal, review, acceptance, and retrospective. Uses file, task,
-  and phase routing to load minimum context. Use for Kotlin Android app work,
-  not KMM or KMP unless the user explicitly asks.
+  plan through FRs, test cases, impact, architecture, implementation, Detekt,
+  build, tests, Maestro, self-heal, review, acceptance, and retrospective.
+  Use when implementing an Android feature, fixing an Android bug, continuing
+  delivery, or recovering a Gradle, Detekt, or test failure. Not for KMM or KMP
+  unless the user explicitly asks.
 ---
 
 # Android orchestrator (hub)
@@ -67,7 +68,7 @@ Understand → FR → impact → (past-miss checklist during FR/impact) → arch
 | Acceptance | `android-functional-requirements` (AC template), FR and test evidence |
 | Retrospective | `android-retrospective` |
 
-Spokes use `disable-model-invocation: true` — **you** must read their files when the phase requires them.
+Spokes use `disable-model-invocation: true`. Read each one at `../<folder>/SKILL.md` (sibling of this skill). Aliases are in `file-routing.yml`.
 
 ### Three-dimensional routing
 
@@ -95,7 +96,7 @@ If no emulator/device for Maestro, document **blocked** for that gate and run fa
 
 ### Self-heal
 
-Classify: compile, Detekt, dependency, architecture, runtime, UI, nav, API, DB, state, test infra, environment, requirement misunderstanding. Fix the correct layer; re-run the **failed** check; then regression. No symptom patches.
+Classify: compile, Detekt, dependency, architecture, runtime, UI, nav, API, DB, state, test infra, environment, requirement misunderstanding. Fix the correct layer; re-run that step’s verify command (or the failed gate); then regression. No symptom patches.
 
 **Identical failure** = same check name, same first error line, and same primary file path. After **three identical failures** with no new evidence, **escalate** (blocked).
 
@@ -118,8 +119,9 @@ Product, Architect, Kotlin, UI, Domain, Data, QA, UI Automation, Quality, Review
 
 The **hub session** coordinates; it does not implement entire feature lanes alone when delegation is available.
 
-- **Delegate** implementation, exploration, and focused debugging via **Task subagents** (`explore`, `generalPurpose`, `ci-investigator` as appropriate). Pass FR IDs, paths, and acceptance commands in the task prompt.
-- Hub merges results, runs quality gates (Detekt, build, unit, **Maestro smoke after UI changes**), and reports done/blocked with evidence.
+- **One fresh subagent per plan step.** Pass that row only: FR / TC IDs, source and test paths, and the verify command. Do not hand the subagent the whole feature.
+- After the subagent returns, review in two passes: **spec compliance** (diff matches the step and its test cases) then **quality** (`android-code-review`). Start the next step only when both pass and the verify command passed.
+- Hub merges results, runs the step command first, then the full gates (Detekt, build, unit). Run **Maestro smoke when a user-facing journey changes**. Report done, blocked, or next with evidence from a run after the last code change.
 - **FR approval:** after drafting `docs/functional-requirements.md` and `docs/test-cases.md` (positive, negative, and edge cases per FR), present a summary to the user and wait for explicit approval before the implement phase (`android-functional-requirements`).
 
 Project repos may add `.cursor/rules/` for local gates (e.g. Maestro-on-UI-change, orchestrator-hub); hub must honor those.

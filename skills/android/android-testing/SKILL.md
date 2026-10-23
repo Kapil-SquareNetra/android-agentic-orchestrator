@@ -32,11 +32,15 @@ Testing phase, code-review phase (mandatory), test file routing.
 - [Compose testing](https://developer.android.com/develop/ui/compose/testing)
 - [Testing Kotlin flows](https://developer.android.com/kotlin/flow/test)
 
-**Unit:** use cases, mappers, repository behavior with fakes. ViewModels: if UI state uses `stateIn` / `WhileSubscribed`, start a collector in `runTest` `backgroundScope` (or use Turbine) before reading `StateFlow.value`.
+Choose the lowest layer that can catch the bug ([testing strategies](https://developer.android.com/training/testing/fundamentals/strategies)). Put negative and edge cases on the JVM when the rule is logic or state. Keep Maestro for a few critical journeys.
 
-**Integration:** DB, API, repository with test doubles.
+**Unit (JVM):** use cases, mappers, repository behavior with fakes. ViewModels: if UI state uses `stateIn` / `WhileSubscribed`, start a collector in `runTest` `backgroundScope` (or use Turbine) before reading `StateFlow.value`.
 
-**UI:** screen behaviors, navigation smoke, state restoration.
+**Component:** one screen (`createComposeRule` or Robolectric), one DAO, or one API client.
+
+**Feature:** screen, ViewModel, and a fake repository together, including navigation inside the feature.
+
+**Application:** instrumented or Maestro journeys. Few of these.
 
 **Regression:** significant bug fixes get a test when feasible.
 

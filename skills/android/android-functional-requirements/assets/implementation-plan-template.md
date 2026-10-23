@@ -19,7 +19,11 @@
 
 ## Steps (each independently verifiable)
 
-1.
+One row per slice. Order is bottom-up: data, domain, ViewModel, UI, navigation. A step is done only when its verify command passes.
+
+| # | FR / TC IDs | Layer | Source file(s) | Test file | Verify command | Expected output |
+|---|-------------|-------|----------------|-----------|----------------|-----------------|
+| 1 | | | | | | |
 
 ## Testing strategy
 

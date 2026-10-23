@@ -19,13 +19,21 @@ Code-review phase with `android-architecture`, `android-kotlin`, `android-securi
 
 ## Inputs
 
-- Diff, test results, Detekt report.
+- Diff, test results, Detekt report, the plan step, and `docs/test-cases.md`.
 
 ## Outputs
 
 - Pass or actionable fix list.
 
 ## Rules
+
+Run spec compliance before quality. Label each finding Critical, Important, or Suggestion.
+
+### Spec compliance
+
+- The diff matches the plan step’s files and FR / TC IDs.
+- Each TC for that step has a test, or a recorded reason it stays manual.
+- No behavior outside the approved FR.
 
 ### Architecture
 

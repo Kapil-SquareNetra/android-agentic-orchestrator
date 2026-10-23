@@ -1,22 +1,15 @@
 # Testing strategy — {Feature name}
 
-## Unit
+Map each test case to the lowest layer that can fail it ([testing strategies](https://developer.android.com/training/testing/fundamentals/strategies)). Most rows should be unit or component. Maestro is for a few critical journeys.
 
-- ViewModels:
-- Use cases / domain:
-- Repositories (fakes):
+| TC IDs | Layer | Subject | Runs on | Trigger | Command |
+|--------|-------|---------|---------|---------|---------|
+| | Unit | | JVM | every slice | |
+| | Component | | JVM / Robolectric | every slice | |
+| | Feature | | JVM or emulator | pre-merge | |
+| | Application | | emulator / device | critical journey | |
 
-## Integration
-
-- Database / API:
-
-## UI (Compose)
-
-- Screens / behaviors:
-
-## Maestro
-
-- Flows:
+Layers: **Unit** (one class, fakes), **Component** (one screen, DAO, or API client), **Feature** (screen plus ViewModel plus fake repository), **Application** (Maestro or instrumented journey).
 
 ## Regression
 
